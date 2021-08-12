@@ -9,7 +9,12 @@
 <div class="centerbox">
     <div style="width:80%">
         <h1>{{post.title}}</h1>
-        <i>{{post.created}}</i>
+        <div style="display: flex; flex-direction: row; align-items: center;">
+            <i style="margin-right: 50px;">{{post.created}}</i>
+            {% for tag in post.tags.all %}
+            <div class="tag" style="margin-right: 10px;">{{tag.name}}</div>
+            {% endfor %}
+        </div>
         {% autoescape off %}
         ​{{post.content}}
         {% endautoescape %}
