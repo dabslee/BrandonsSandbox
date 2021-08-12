@@ -9,3 +9,6 @@ class Post(models.Model):
     created = models.DateField()
     content = models.TextField(max_length=20000)
     tags = models.ManyToManyField(Tag)
+
+    def __str__(self):
+        return self.title
