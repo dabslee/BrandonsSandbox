@@ -19,12 +19,6 @@
         ​{{post.content}}
         {% endautoescape %}
     </div>
-    <div class="sidebar">
-        <div class="sidebar-moving">
-            <img src="{% static 'img/beach.png' %}" style="width:80%;">
-            <h2>Brandon's Blog</h2>
-            <p>A place for me to blog my essays, random thoughts, and about the books I read.</p>
-        </div>
-    </div>
+    {% include "sidebar.html" %}
 </div>
 {% endblock %}
