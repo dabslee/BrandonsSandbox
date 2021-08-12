@@ -68,4 +68,14 @@
     .sidebar {
         opacity: 0;
     }
-}  
+}
+
+.tag {
+    border-radius: 20px;
+    border: var(--ocean-color) 2px solid;
+    font-weight: bold;
+    color: var(--ocean-color);
+    width: fit-content;
+    padding: 5px 10px;
+    font-size: small;
+}
