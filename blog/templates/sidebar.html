@@ -15,7 +15,7 @@
             {% for tag in tags %}
             <div class="tag" style="margin: 5px">{{tag.name}}</div>
             {% endfor %}
-            <div class="tag" style="margin: 5px; color: gray; border-color: gray;">&#x2715; Clear selection</div>
+            <div class="tag clear-selection">&#x2715; Clear selection</div>
         </div>
         <div class="sidebar-bottom">
             <div class="back-to-top" onclick="document.body.scrollTop = 0;"><img src="{% static 'img/backtotop.png' %}" style="width:25%"></div>

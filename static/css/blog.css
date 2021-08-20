@@ -70,4 +70,20 @@
     width: fit-content;
     padding: 5px 10px;
     font-size: small;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.tag:hover {
+    background-color: var(--ocean-color);
+    color: var(--background-color);
+}
+
+.clear-selection {
+    margin: 5px;
+    color: gray;
+    border-color: gray;
+}
+.clear-selection:hover {
+    background-color: gray;
+    color: var(--background-color);
 }

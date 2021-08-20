@@ -27,8 +27,9 @@ def index(request, page=1):
             return render(request, "index.html", {"posts":posts, "previous":0, "tags":tags})
 
 def post(request, postid):
+    tags = Tag.objects.all()
     post = Post.objects.get(id=postid)
-    return render(request, "post.html", {"post":post})
+    return render(request, "post.html", {"post":post, "tags":tags})
 
 def allposts(request):
     posts = Post.objects.all()
