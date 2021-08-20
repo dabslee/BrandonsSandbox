@@ -12,9 +12,12 @@
         <h1>{{post.title}}</h1>
         <div style="display: flex; flex-direction: row; align-items: center;">
             <i style="margin-right: 50px;">{{post.created}}</i>
-            {% for tag in post.tags.all %}
-            <div class="tag" style="margin-right: 10px;">{{tag.name}}</div>
-            {% endfor %}
+            <form style="margin:0" action="{% url 'blog:index' %}" method="POST">
+                {% csrf_token %}
+                {% for tag in post.tags.all %}
+                <input type="submit" name="filter-submit-{{tag.id}}" class="tag" style="margin-right: 10px" value="{{tag.name}}"></input>
+                {% endfor %}
+            </form>
         </div>
         {% autoescape off %}
         ​{{post.content}}

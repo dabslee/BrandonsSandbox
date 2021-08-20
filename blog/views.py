@@ -11,8 +11,11 @@ import math
 def index(request, page=1):
     tags = Tag.objects.all()
     if request.method == 'POST':
-        query = request.POST['searchbar']
-        posts = Post.objects.filter(Q(title__icontains=query) | Q(content__icontains=query)).order_by('id').reverse()
+        query=None
+        posts = Post.objects.all().order_by('id').reverse()
+        if "searchbar" in request.POST:
+            query = request.POST['searchbar']
+            posts = posts.filter(Q(title__icontains=query) | Q(content__icontains=query))
         tagfilter = None
         for tag in Tag.objects.all():
             if f"filter-submit-{tag.id}" in request.POST:

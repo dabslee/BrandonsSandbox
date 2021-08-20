@@ -20,11 +20,12 @@
             {% autoescape off %}
             ​{{post.content|truncatewords_html:75}}
             {% endautoescape %}
-            <div style="display: flex; flex-direction: row; align-items: center;">
+            <form action="{% url 'blog:index' %}" method="POST" style="display: flex; flex-direction: row; align-items: center;">
+                {% csrf_token %}
                 {% for tag in post.tags.all %}
-                <div class="tag" style="margin-right: 10px;">{{tag.name}}</div>
+                <input type="submit" name="filter-submit-{{tag.id}}" class="tag" style="margin-right: 10px" value="{{tag.name}}"></input>
                 {% endfor %}
-            </div>
+            </form>
         </div>
         <br>
         {% endfor %}
