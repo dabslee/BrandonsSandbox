@@ -12,7 +12,7 @@
             <div>
                 <p><b>Filter by tag:</b></p>
                 {% for tag in tags %}
-                <input type="submit" name="filter-submit-{{tag.id}}" class="tag" style="margin: 5px" value="{{tag.name}}"></input>
+                <input type="submit" name="filter-submit-{{tag.id}}" class="tag {% if selected_tag_id == tag.id %}tag-selected{% endif %}" style="margin: 5px" value="{{tag.name}}"></input>
                 {% endfor %}
                 <div onclick="window.location.href='{% url 'blog:index' %}'" class="tag clear-selection">&#x2715; Clear selection</div>
             </div>

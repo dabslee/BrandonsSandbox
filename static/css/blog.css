@@ -75,7 +75,7 @@
     transition: 0.2s;
     background-color: rgba(0,0,0,0);
 }
-.tag:hover {
+.tag-selected, .tag:hover {
     background-color: var(--ocean-color);
     color: var(--background-color);
 }

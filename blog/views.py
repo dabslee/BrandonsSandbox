@@ -12,6 +12,7 @@ def index(request, page=1):
     tags = Tag.objects.all()
     if request.method == 'POST':
         query=None
+        selected_tag_id = None
         posts = Post.objects.all().order_by('id').reverse()
         if "searchbar" in request.POST:
             query = request.POST['searchbar']
@@ -20,10 +21,11 @@ def index(request, page=1):
         for tag in Tag.objects.all():
             if f"filter-submit-{tag.id}" in request.POST:
                 tagfilter = tag
+                selected_tag_id = tag.id
                 break
         if tagfilter:
             posts = posts.filter(Q(tags=tagfilter))
-        return render(request, "index.html", {"posts":posts, "previous":0, "searchquery":query, "tags":tags})
+        return render(request, "index.html", {"posts":posts, "previous":0, "searchquery":query, "selected_tag_id":selected_tag_id, "tags":tags})
     else:
         page = int(page)
         posts = Post.objects.all().order_by('id').reverse()
