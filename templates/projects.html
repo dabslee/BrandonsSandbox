@@ -1,19 +1,175 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block style %}
-<title>Brandon's Sandbox - Projects</title>
 <link rel="stylesheet" type="text/css" href="{% static 'css/projects.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="accordion">
-    <div class="pocket">
-        <h1>Websites</h1>
+<div class="projectcontainer">
+    <div class="projectblock">
+        <h2>brandonssandbox.com</h2>
+        <img src="{% static 'img/website.PNG' %}" class="projectimagebox">
+        <div class="buttonholder">
+            <a href="https://github.com/dabslee/BrandonsSandbox" target="_blank" class="button" style="display: inline;">Code</a>
+            <a href="{% url 'home' %}" target="_blank" class="button" style="display: inline;">Demo</a>
+        </div>
+        <p>This website! A personal website for hosting my thoughts and projects. Made with
+            Python <a href="https://www.djangoproject.com/" target="_blank">Django</a> and deployed with
+            <a href="https://dashboard.heroku.com/" target="_blank">Heroku</a>.</p>
+        <div class="technology">
+            <p style="color:gray; font-style: italic;">March 2021</p>
+            <b>Technology:</b> Django, Heroku, Python, JavaScript, HTML, CSS
+        </div>
     </div>
-    <div class="notecard notecard-1">
-        <div class="notecard-interior">Lorem Ipsum</div>
-        <div class="notecard-label">Personal Website</div>
+    <div class="projectblock">
+        <h2>OpenDiscussion</h2>
+        <img src="{% static 'img/opendiscussion.PNG' %}" class="projectimagebox">
+        <div class="buttonholder">
+            <a href="https://github.com/dabslee/OpenDiscussion" target="_blank" class="button" style="display: inline;">Code</a>
+            <div class="deadbutton" style="display: inline;">Demo</div>
+        </div>
+        <p>A <a href="https://reddit.com" target="_blank">Reddit</a>-like forum site arranged around essay posts, which can be
+            original essays or responses to other essays. Readers can vote on
+            whether they agree with the post and whether they think the post
+            makes a strong argument. Made with <a href="https://www.djangoproject.com/" target="_blank">Django</a>.</p>
+        <div class="technology">
+            <p style="color:gray; font-style: italic;">February 2021</p>
+            <b>Technology:</b> Django, Python, JavaScript, HTML, CSS
+        </div>
+    </div>
+    <div class="projectblock">
+        <h2>BowlingSim</h2>
+        <img src="{% static 'img/bowlingsim.png' %}" class="projectimagebox">
+        <div class="buttonholder">
+            <a href="https://github.com/dabslee/BowlingSim" target="_blank" class="button" style="display: inline;">Code</a>
+            <a href="https://github.com/dabslee/BowlingSim/blob/master/analysis.ipynb" target="_blank" class="button" style="display: inline;">Demo</a>
+        </div>
+        <p>Simulates a bowling game based on a simple model where pins fall more easily if the pins
+            around them have fallen. Presents an analysis of the model's results in a
+            <a href="https://jupyter.org/" target="_blank">Juypter</a> notebook.</p>
+        <div class="technology">
+            <p style="color:gray; font-style: italic;">February 2021</p>
+            <b>Technology:</b> Python, Jupyter
+        </div>
+    </div>
+    <div class="projectblock">
+        <h2>Chessling</h2>
+        <img src="{% static 'img/chess.PNG' %}" class="projectimagebox">
+        <div class="buttonholder">
+            <a href="https://github.com/dabslee/Chessling" target="_blank" class="button" style="display: inline;">Code</a>
+            <div class="deadbutton" style="display: inline;">Demo</div>
+        </div>
+        <p>Chess, created on a challenge with friends on coding chess as fast as we possibly could.
+            Made in 7 hours. GUI uses Python <a href="https://www.pygame.org/" target="_blank">pygame</a> library.</p>
+        <div class="technology">
+            <p style="color:gray; font-style: italic;">January 2020</p>
+            <b>Technology:</b> Python, pygame
+        </div>
+    </div>
+    <div class="projectblock">
+        <h2>FRED Relation Analyzer</h2>
+        <img src="{% static 'img/relationship.PNG' %}" class="projectimagebox">
+        <div class="buttonholder">
+            <a href="https://github.com/dabslee/Economics-Sandbox/tree/master/relationanalyzer" target="_blank" class="button" style="display: inline;">Code</a>
+            <div class="deadbutton" style="display: inline;">Demo</div>
+        </div>
+        <p>Takes <a href="https://fred.stlouisfed.org/" target="_blank">FRED</a> time series and returns
+            linear fits. Can compare two time series or several time series against each other, returning
+            the slopes and R^2 values of the fits.</p>
+        <div class="technology">
+            <p style="color:gray; font-style: italic;">January 2020</p>
+            <b>Technology:</b> MATLAB
+        </div>
+    </div>
+    <div class="projectblock">
+        <h2>Yield Curve Web Scraper</h2>
+        <img src="{% static 'img/yield.PNG' %}" class="projectimagebox">
+        <div class="buttonholder">
+            <a href="https://github.com/dabslee/Economics-Sandbox/tree/master/yieldcurve" target="_blank" class="button" style="display: inline;">Code</a>
+            <div class="deadbutton" style="display: inline;">Demo</div>
+        </div>
+        <p>Uses Java to download and parse all the 
+            <a href="https://www.treasury.gov/resource-center/data-chart-center/interest-rates/pages/textview.aspx?data=yield" target="_blank">yield curve data from the U.S. treasury website,</a>
+            putting the results in a csv file. Includes a MATLAB application which
+            renders an animation of the yield curve over time.</p>
+        <div class="technology">
+            <p style="color:gray; font-style: italic;">November 2019</p>
+            <b>Technology:</b> Java, MATLAB
+        </div>
+    </div>
+    <div class="projectblock">
+        <h2>Brownian Motion Sim</h2>
+        <img src="{% static 'img/brown.PNG' %}" class="projectimagebox">
+        <div class="buttonholder">
+            <a href="https://github.com/dabslee/Science-Simulations/tree/master/Brownian%20Motion" target="_blank" class="button" style="display: inline;">Code</a>
+            <div class="deadbutton" style="display: inline;">Demo</div>
+        </div>
+        <p>Offers a particle based simulation of 1D
+            <a href="https://en.wikipedia.org/wiki/Brownian_motion" target="_blank">Brownian motion</a>
+            and shows that it is analogous to a 1D random walk. Also simulates and animates
+            n-dimensional random walks.</p>
+        <div class="technology">
+            <p style="color:gray; font-style: italic;">January 2020</p>
+            <b>Technology:</b> MATLAB
+        </div>
+    </div>
+    <div class="projectblock">
+        <h2>Luria-Delbruck Simulator</h2>
+        <img src="{% static 'img/luria.PNG' %}" class="projectimagebox">
+        <div class="buttonholder">
+            <a href="https://github.com/dabslee/Science-Simulations/blob/master/Luria-Delbruck" target="_blank" class="button" style="display: inline;">Code</a>
+            <div class="deadbutton" style="display: inline;">Demo</div>
+        </div>
+        <p>A simulation of the <a href="https://en.wikipedia.org/wiki/Luria%E2%80%93Delbr%C3%BCck_experiment" target="_blank">Luria-Delbrück Fluctuation Test</a>,
+            which showed the correctness of the "mutation hypothesis" over the "acquired immunity hypothesis."
+            Uses <a href="https://www.pygame.org/" target="_blank">pygame</a> to render results.</p>
+        <div class="technology">
+            <p style="color:gray; font-style: italic;">November 2019</p>
+            <b>Technology:</b> Python, pygame
+        </div>
+    </div>
+    <div class="projectblock">
+        <h2>SuperTyper</h2>
+        <img src="{% static 'img/racing.png' %}" class="projectimagebox">
+        <div class="buttonholder">
+            <a href="https://github.com/dabslee/SuperTyper" target="_blank" class="button" style="display: inline;">Code</a>
+            <a href="https://thebslee.itch.io/supertyper" target="_blank" class="button" style="display: inline;">Demo</a>
+        </div>
+        <p>A fun little game with lots of interesting passages to practice your typing!
+            Simulates a racing game, where the faster you type, the faster your car goes--try
+            to beat the other cars to the finish line! Written with Python's
+            <a href="https://www.pygame.org/" target="_blank">pygame</a> library.</p>
+        <div class="technology">
+            <p style="color:gray; font-style: italic;">October 2019</p>
+            <b>Technology:</b> Python, pygame
+        </div>
+    </div>
+    <div class="projectblock">
+        <h2>Rina the Assistant</h2>
+        <img src="{% static 'img/rina.png' %}" class="projectimagebox">
+        <div class="buttonholder">
+            <a href="https://github.com/dabslee/Assistant" target="_blank" class="button" style="display: inline;">Code</a>
+            <div class="deadbutton" style="display: inline;">Demo</div>
+        </div>
+        <p>A digital assistant to help you live a more productive life. Written with Python's
+            <a href="https://www.pygame.org/" target="_blank">pygame</a> library.</p>
+        <div class="technology">
+            <p style="color:gray; font-style: italic;">October 2019</p>
+            <b>Technology:</b> Python, pygame
+        </div>
+    </div>
+    <div class="projectblock">
+        <h2>Project Euler Solutions</h2>
+        <img src="{% static 'img/euler.jpg' %}" class="projectimagebox">
+        <div class="buttonholder">
+            <a href="https://github.com/dabslee/Project-Euler" target="_blank" class="button" style="display: inline;">Code</a>
+            <div class="deadbutton" style="display: inline;">Demo</div>
+        </div>
+        <p>My solutions to a few of the Project Euler problems written in C++, Java, Python, and VBA.</p>
+        <div class="technology">
+            <p style="color:gray; font-style: italic;">September 2019</p>
+            <b>Technology:</b> C++, Java, Python, VBA
+        </div>
     </div>
 </div>
-{% endblock %}
+{% endblock %} 
