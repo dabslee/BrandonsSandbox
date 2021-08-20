@@ -1,13 +1,27 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block style %}
+<title>Brandon's Sandbox - Projects</title>
 <link rel="stylesheet" type="text/css" href="{% static 'css/projects.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="projectcontainer">
     <div class="projectblock">
-        <h2>brandonssandbox.com</h2>
+        <h2>aristotle°</h2>
+        <img src="{% static 'img/aristotle.png' %}" class="projectimagebox">
+        <div class="buttonholder">
+            <a href="https://github.com/dabslee/aristotle/" target="_blank" class="button" style="display: inline;">Code</a>
+            <a href="https://aristotle.brandonssandbox.com" target="_blank" class="button" style="display: inline;">Demo</a>
+        </div>
+        <p>A free, open-source learning management system (LMS) built on <a href="https://www.djangoproject.com/" target="_blank">Django</a> and deployed on <a href="https://dashboard.heroku.com/" target="_blank">Heroku</a>.</p>
+        <div class="technology">
+            <p style="color:gray; font-style: italic;">March 2021</p>
+            <b>Technology:</b> Django, Heroku, Python, JavaScript, HTML, CSS
+        </div>
+    </div>
+    <div class="projectblock">
+        <h2>Brandon's Sandbox</h2>
         <img src="{% static 'img/website.PNG' %}" class="projectimagebox">
         <div class="buttonholder">
             <a href="https://github.com/dabslee/BrandonsSandbox" target="_blank" class="button" style="display: inline;">Code</a>
