@@ -8,11 +8,6 @@
 
 .sidebar {
     width: 15%;
-    /*border-style: solid;
-    border-width: 2px;
-    border-radius: 40px;
-    border-color: var(--sandstone-color);
-    padding: 40px;*/
     transition: var(--transition-time);
     display: flex;
     flex-direction: column;
@@ -47,14 +42,11 @@
 
 .post {
     width: 90%;
-    border-width: 2px;
-    border-radius: 40px;
-    border-style: solid;
-    padding: 30px 40px;
-    border-color: var(--sandstone-color);
+    border-left: 7px solid var(--sandstone-color);
+    padding: 20px 30px;
     transition: var(--transition-time);
     cursor: pointer;
-    box-shadow: 10px 10px 20px var(--shadow-black);
+    box-shadow: 5px 5px 30px var(--shadow-black);
     max-height: 30rem;
 }
 .post:hover {
