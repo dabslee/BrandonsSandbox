@@ -65,13 +65,15 @@
 .tag {
     border-radius: 20px;
     border: var(--ocean-color) 2px solid;
-    font-weight: bold;
     color: var(--ocean-color);
     width: fit-content;
     padding: 5px 10px;
+    font: var(--main-font);
     font-size: small;
+    font-weight: bold;
     cursor: pointer;
     transition: 0.2s;
+    background-color: rgba(0,0,0,0);
 }
 .tag:hover {
     background-color: var(--ocean-color);

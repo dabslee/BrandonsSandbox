@@ -2,7 +2,6 @@ from django.shortcuts import render
 from .models import Post, Tag
 from django.core import serializers
 from django.http import HttpResponse
-from django.http.response import JsonResponse
 import json
 from django.db.models import Q
 
@@ -13,8 +12,14 @@ def index(request, page=1):
     tags = Tag.objects.all()
     if request.method == 'POST':
         query = request.POST['searchbar']
-        print(query)
         posts = Post.objects.filter(Q(title__icontains=query) | Q(content__icontains=query)).order_by('id').reverse()
+        tagfilter = None
+        for tag in Tag.objects.all():
+            if f"filter-submit-{tag.id}" in request.POST:
+                tagfilter = tag
+                break
+        if tagfilter:
+            posts = posts.filter(Q(tags=tagfilter))
         return render(request, "index.html", {"posts":posts, "previous":0, "searchquery":query, "tags":tags})
     else:
         page = int(page)

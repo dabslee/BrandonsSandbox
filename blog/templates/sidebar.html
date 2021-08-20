@@ -8,15 +8,15 @@
         <form action="{% url 'blog:index' %}" method="POST">
             {% csrf_token %}
             <input id="searchbar" type="text" placeholder="Search by keyword" name="searchbar">
-            <input class="button" type="submit" style="margin:10px;padding:0px 10px" value="&#187;">
+            <input name="keyword-submit" class="button" type="submit" style="margin:10px;padding:0px 10px" value="&#187;">
+            <div>
+                <p><b>Filter by tag:</b></p>
+                {% for tag in tags %}
+                <input type="submit" name="filter-submit-{{tag.id}}" class="tag" style="margin: 5px" value="{{tag.name}}"></input>
+                {% endfor %}
+                <div onclick="window.location.href='{% url 'blog:index' %}'" class="tag clear-selection">&#x2715; Clear selection</div>
+            </div>
         </form>
-        <div>
-            <p><b>Filter by tag:</b></p>
-            {% for tag in tags %}
-            <div class="tag" style="margin: 5px">{{tag.name}}</div>
-            {% endfor %}
-            <div class="tag clear-selection">&#x2715; Clear selection</div>
-        </div>
         <div class="sidebar-bottom">
             <div class="back-to-top" onclick="document.body.scrollTop = 0;"><img src="{% static 'img/backtotop.png' %}" style="width:25%"></div>
         </div>
