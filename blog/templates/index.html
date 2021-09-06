@@ -18,7 +18,7 @@
             <h1>{{post.title}}</h1>
             <i>{{post.created}}</i>
             {% autoescape off %}
-            ​{{post.content|truncatewords_html:75}}
+            ​{{post.content.html|truncatewords_html:75}}
             {% endautoescape %}
             <form action="{% url 'blog:index' %}" method="POST" style="display: flex; flex-direction: row; align-items: center;">
                 {% csrf_token %}

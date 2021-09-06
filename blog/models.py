@@ -12,7 +12,7 @@ class Post(models.Model):
     title = models.CharField(max_length=500)
     created = models.DateField()
     content = QuillField()
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, blank=True)
 
     def __str__(self):
         return self.title

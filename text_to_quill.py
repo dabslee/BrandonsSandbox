@@ -1,18 +1,18 @@
-for sub in Submission.objects.all():
+from blog.models import Post
+import django_quill
+
+for post in Post.objects.all():
     try:
         try:
-            oldstr = sub.details.html
+            oldstr = post.content.html
         except:
-            oldstr = sub.details.json_string
-        newstr = ""
-        for line in oldstr.replace("\r","").replace("\n","   ").split("   "):
-            if not "<p>" in newstr:
-                newstr += f"<p>{line}</p>"
-            else:
-                newstr += line
+            oldstr = post.content.json_string
+        newstr = post.content.json_string
         newstr = newstr.replace("\"","\'")
+        newstr = newstr.replace("\r","")
+        newstr = newstr.replace("\n","")
         thestr = "{\"delta\":\"\",\"html\":\"" + newstr + "\"}"
-        sub.details.json_string = thestr
-        sub.save()
+        post.content.json_string = thestr
+        post.save()
     except:
         pass

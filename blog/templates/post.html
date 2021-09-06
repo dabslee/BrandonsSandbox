@@ -20,7 +20,7 @@
             </form>
         </div>
         {% autoescape off %}
-        ​{{post.content}}
+        ​{{post.content.html}}
         {% endautoescape %}
     </div>
     {% include "sidebar.html" %}
