@@ -1,4 +1,5 @@
 from django.db import models
+from django_quill.fields import QuillField
 
 # Create your models here.
 class Tag(models.Model):
@@ -10,7 +11,7 @@ class Tag(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=500)
     created = models.DateField()
-    content = models.TextField(max_length=20000)
+    content = QuillField()
     tags = models.ManyToManyField(Tag)
 
     def __str__(self):
