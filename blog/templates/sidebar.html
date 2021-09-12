@@ -10,7 +10,7 @@
             <input id="searchbar" type="text" placeholder="Search by keyword" name="searchbar">
             <input name="keyword-submit" class="button" type="submit" style="margin:10px;padding:0px 10px" value="&#187;">
             <div>
-                <p><b>Filter by tag:</b></p>
+                <p><b>Search by tag:</b></p>
                 {% for tag in tags %}
                 <input type="submit" name="filter-submit-{{tag.id}}" class="tag {% if selected_tag_id == tag.id %}tag-selected{% endif %}" style="margin: 5px" value="{{tag.name}}"></input>
                 {% endfor %}
