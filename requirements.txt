@@ -4,3 +4,4 @@ Django
 psycopg2-binary
 whitenoise
 django-quill-editor
+django-cors-headers
