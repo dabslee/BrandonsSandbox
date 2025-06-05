@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<title>Brandon's Sandbox - Resume</title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/resume.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>Resume</h1>
+<p>For a traditional PDF resume,
+    <a href="https://drive.google.com/file/d/1Bj7AYY6WU3N8RbUoPr4XTf6KPAB0ZEXE/view?usp=sharing" target="_blank">click here!</a></p>
+<hr>
+<br>
+<div class="flexcontainer">
+    <img src="{% static 'img/resumeprof.png' %}" class="outline-bubble hoverScale" style="width:15%; top:4vw;"></div>
+    <h1 class="hoverScale" style="position:absolute; left:30%; font-size:4vw; top:6vw">BRANDON LEE</h1>
+    <a href="mailto:brandon.sangmin.lee@gmail.com" class="solid-bubble hoverScale" style="color:white; width:8%; height:8vw; left:30%; top:11.5vw; cursor:pointer">
+        <p style="font-size:1.3vw">Email<br>📧</p>
+    </a>
+    <a href="tel:224-600-9625" class="solid-bubble hoverScale" style="color:white; width:8%; height:8vw; left:40%; top:11.5vw; cursor:pointer">
+        <p style="font-size:1.3vw">Phone<br>📞</p>
+    </a>
+    <a href="https://www.linkedin.com/in/brandon-sangmin-lee/" target="_blank" class="solid-bubble hoverScale" style="color:white; width:8%; height:8vw; left:50%; top:11.5vw; cursor:pointer">
+        <p style="font-size:1.3vw">LinkedIn<br>💼</p>
+    </a>
+    <a href="https://github.com/dabslee" target="_blank" class="solid-bubble hoverScale" style="color:white; width:8%; height:8vw; left:60%; top:11.5vw; cursor:pointer">
+        <p style="font-size:1.3vw">GitHub<br>😸</p>
+    </a>
+
+    <div class="hoverScale" style="position:absolute; width: 60%; height: 2vw; top:32vw; left:20%; background-color: var(--ocean-color);"></div>
+    <div class="solid-bubble hoverScale" style="border-style:groove; border-color:var(--sandstone-color); border-width:1rem; width:16%; height:16vw; top:25.5vw">
+        <p style="font-size:2vw">Education<br>🎓</p>
+    </div>
+
+    <!-- NTHS -->
+    <div class="outline-bubble" style="background-size:cover; background-image:url('{% static 'img/nths.jpg' %}'); width:20%; height:20vw; top:23vw; left:36%; z-index: 0; transition: var(--transition-time)"></div>
+    <div class="outline-bubble" style="background-color: var(--ocean-color); width:20%; height:20vw; top:23vw; left:36%; z-index: 1; opacity:0.7; transition: var(--transition-time)"></div>
+    <div class="outline-bubble" style="width:20%; height:20vw; top:23vw; left:36%; z-index: 1; transition: var(--transition-time)">
+        <p style="font-size:2vw; color:white;">New Trier High School</p>
+        <div style="font-size:1vw; color:white;">Aug 2016 - May 2019</div>
+    </div>
+    <div class="outline-bubble hoverAppear" style="background-color: var(--ocean-color); width:20%; height:20vw; top:23vw; left:36%; z-index: 1; transition: var(--transition-time); color:white; font-size: 1vw;">
+        <p><i>High School Diploma</i><br>
+            <b>GPA:</b> 3.9/4.0<br>
+            <b>Testing:</b> 36/36 ACT, 1590/1600 SAT</p>
+        <p> Founder of <a href="https://binaryheart.org/" style="color:white; text-decoration: underline;">BinaryHeart</a>, a charity that fixes and donates computers.<br>
+            Captain of CS & Chem Clubs.<br>
+            Lead Coder of FTC Robotics team.</p>
+        <p>​📍 Winnetka, IL</p>
+    </div>
+
+    <!-- Princeton -->
+    <div class="outline-bubble" style="background-size:cover; background-image:url('{% static 'img/pton.jpg' %}'); width:20%; height:20vw; top:23vw; left:67%; z-index: 0; transition: var(--transition-time)"></div>
+    <div class="outline-bubble" style="background-color: var(--sandstone-color); width:20%; height:20vw; top:23vw; left:67%; z-index: 1; opacity:0.7; transition: var(--transition-time)"></div>
+    <div class="outline-bubble" style="border-color: var(--sandstone-color); width:20%; height:20vw; top:23vw; left:67%; z-index: 1; transition: var(--transition-time)">
+        <p style="font-size:2vw; color:white;">Princeton<br>University</p>
+        <div style="font-size:1vw; color:white;">Sep 2019 - May 2023</div>
+    </div>
+    <div class="outline-bubble hoverAppear" style="border-color: var(--sandstone-color); background-color: var(--sandstone-color); width:20%; height:20vw; top:23vw; left:67%; z-index: 1; transition: var(--transition-time); color:white; font-size: 1vw">
+        <p><i>Pursuing BSE in <a href="https://orfe.princeton.edu/" target="_blank" style="color:white; text-decoration: underline;">ORFE</a></i><br>
+            <b>GPA:</b> 3.8/4.0</p>
+        <p>Pursuing concentrations (minors) in finance, machine learning, and global health.
+            A member of the <a href="https://www.facebook.com/PU.Nonprofit.Consulting/" target="_blank" style="color:white; text-decoration: underline;">consulting club</a>
+            and the <a href="https://princetonea.org/events/arete-fellowship-2019-2020/#page-content" target="_blank" style="color:white; text-decoration: underline;">Arete
+                Fellowship for Effective Altruism</a>.</p>
+        <p>​📍 Princeton, NJ</p>
+    </div>
+
+    <!-- Work experience -->
+    <div class="hoverScale" style="position:absolute; width: 8%; height: 2vw; top:64vw; left:20.5%; background-color: var(--ocean-color); transform: rotate(65deg); transition: var(--transition-time)"></div>
+    <div class="hoverScale" style="position:absolute; width: 8%; height: 2vw; top:64vw; left:31.5%; background-color: var(--ocean-color); transform: rotate(120deg); transition: var(--transition-time)"></div>
+    <div class="hoverScale" style="position:absolute; width: 24%; height: 2vw; top:72vw; left:35%; background-color: var(--ocean-color); transform: rotate(-3deg); transition: var(--transition-time)"></div>
+    <div class="hoverScale" style="position:absolute; width: 12%; height: 2vw; top:79.5vw; left:30%; background-color: var(--ocean-color); transform: rotate(44deg); transition: var(--transition-time)"></div>
+    <div class="hoverScale" style="position:absolute; width: 30%; height: 2vw; top:85vw; left:13.5%; background-color: var(--ocean-color); transform: rotate(92.5deg); transition: var(--transition-time)"></div>
+    <div class="solid-bubble hoverScale" style="border-style:groove; border-color:var(--sandstone-color); border-width:1rem; width:16%; height:16vw; top:65vw; left:20vw">
+        <p style="font-size:2vw">Work Experience<br>💼</p>
+    </div>
+
+    <!-- Anthem Data Analytics Intern -->
+    <p class="hoverScale" style="color:var(--sandstone-color); top:48vw; left:17vw; font-size:1.5vw">Upcoming</p>
+    <a href="https://anthem.referrals.selectminds.com/student-programs/jobs/data-analyst-intern-undergraduate-summer-2021-57565" target="_blank" class="solid-bubble hoverScale" style="opacity:1; background-color: var(--sandstone-color); width:13%; height:13vw; top:50vw; left:14.5vw; cursor:pointer">
+        <img src="{% static 'img/anthemwhite.png' %}" style="width:70%"></img>
+        <p style="font-size:1vw; color:white;">Data Analytics Intern<br><i>Summer 2021</i></p>
+    </a>
+
+    <!-- PUNC -->
+    <p id="instruct" class="hoverScale" style="color:var(--sandstone-color); top:55vw; left:50%; font-size:1.2vw; opacity:0;"><b>☚</b> Click to expand</p>
+    <div id="opener-punc" class="openpiece" style="top:48vw; left:40%">
+        <p><b>May 2020 - Present: Project Manager</b><br>
+        Lead a project to develop an upselling strategy for <a href="https://www.1fortheworld.org/" target="_blank">One for the World</a>, a
+        donation aggregator and awareness promoter for the effective altruism movement,
+        targeting its regular monthly donors.</p>
+        <p><b>Oct 2019 - May 2020: Consultant</b><br>
+            Formulated recommendations for <a href="https://hugsforbrady.org/" target="_blank">Hugs for Brady</a>, a non-profit raising
+            money for pediatric leukemia research, to improve its online presence
+            and increase its revenue.</p>
+        <p>​📍 Princeton, NJ</p>
+    </div>
+    <p class="hoverScale" style="color:var(--sandstone-color); top:45.9vw; left:37.5%; font-size:1.5vw">Current</p>
+    <div id="icon-punc" class="solid-bubble hoverScale" style="background-color: var(--sandstone-color); width:16%; height:16vw; top:48vw; left:32vw; cursor:pointer">
+        <img src="{% static 'img/punc.png' %}" style="width:60%"></img>
+        <p style="font-size:1vw; color:white;">Project Manager<br><i>Oct 2019 - Present</i></p>
+    </div>
+
+    <!-- NTCD -->
+    <div id="opener-ntcd" class="openpiece" style="top:66vw; left:55%; height:12vw; width:20%; padding-left:8vw">
+        <p>Co-founded and served as Director of Operations (COO) of NTCD, a New
+            Trier High School alumni and student organization helping the school administration
+            deal with racial issues. Oversaw long-term planning, scheduling, fundraising,
+            marketing, and human resources.</p>
+        <p>​📍 Winnetka, IL</p>
+    </div>
+    <div id="icon-ntcd" class="solid-bubble hoverScale" style="background-color: var(--ocean-color); width:13%; height:13vw; top:66vw; left:48vw; cursor:pointer">
+        <img src="{% static 'img/ntcd.png' %}" style="width:30%"></img>
+        <p style="font-size:1vw; color:white;">COO, Co-founder<br><i>Jul 2020 - Dec 2020</i></p>
+    </div>
+
+    <!-- Agile Rainmakers -->
+    <div id="opener-agile" class="openpiece" style="top:81vw; left:44%">
+        <p>Summer intern at <a href="https://www.agilerainmakers.com/" target="_blank">Agile Rainmakers</a>, a business development consulting firm. Worked
+            on various consulting projects for clients in the financial, healthcare, energy,
+            and digital marketing sectors; engaged in social media marketing, analyzing
+            industry competition, facilitating surveys, analyzing data through SQL, and
+            researching business partnership leads.</p>
+        <p>​📍 Chicago, IL</p>
+    </div>
+    <div id="icon-agile" class="solid-bubble hoverScale" style="opacity:1; background-color: var(--ocean-color); width:16%; height:16vw; top:81vw; left:36vw; cursor:pointer">
+        <img src="{% static 'img/agile.png' %}" style="width:60%"></img>
+        <p style="font-size:1vw; color:white;">Summer Intern<br><i>Jun 2020 - Aug 2020</i></p>
+    </div>
+
+    <!-- Exicure -->
+    <div id="opener-exicure" class="openpiece" style="top:99vw; left:29%; height:12vw; width:27%; padding-left:7vw">
+        <p>Worked as summer intern at <a href="http://www.exicuretx.com/" target="_blank">Exicure, Inc.</a>,
+            a biotech company developing new drugs based on patented spherical nucleic acids (SNAs). Built
+            a company portal with Python Django to facilitate the ordering, analysis, and tracking
+            of company products, mainly SNAs and oligonucleotides.
+            Automated several aspects of pre-production analysis, such as calculating molecular
+            weight, enthalpy, and predicted molecular size.</p>
+        <p>​📍 Evanston, IL</p>
+    </div>
+    <div id="icon-exicure" class="solid-bubble hoverScale" style="opacity:1; background-color: var(--ocean-color); width:13%; height:13vw; top:99vw; left:21vw; cursor:pointer">
+        <img src="{% static 'img/exicurelogowhite.png' %}" style="width:60%"></img>
+        <p style="font-size:1vw; color:white;">Summer Intern<br><i>Jun 2019 - Aug 2019</i></p>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/resume.js' %}"></script>
+{% endblock %}
