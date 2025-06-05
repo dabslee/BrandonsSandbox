@@ -3,150 +3,383 @@
 
 {% block style %}
 <title>Brandon's Sandbox - Resume</title>
-<link rel="stylesheet" type="text/css" href="{% static 'css/resume.css' %}">
+<style>
+    .resume-container {
+        max-width: 900px;
+        margin: 2rem auto;
+        background: var(--background-color, #fff);
+        border-radius: 12px;
+        box-shadow: 0 4px 24px var(--shadow-black);
+        padding: 2.5rem 2rem;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        color: var(--text-color, #222);
+    }
+    .resume-header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-end;
+        border-bottom: 2px solid var(--sandstone-color, #e0e0e0);
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+    }
+    .resume-header h1 {
+        font-size: 2.5rem;
+        margin: 0;
+        color: var(--text-color, #1a237e);
+        letter-spacing: 1px;
+    }
+    .resume-contact {
+        text-align: right;
+        font-size: 1rem;
+        color: var(--text-color, #333);
+    }
+    .resume-section {
+        margin-bottom: 2.2rem;
+    }
+    .resume-section h2 {
+        color: var(--sandstone-color, #3949ab);
+        font-size: 1.3rem;
+        margin-bottom: 0.7rem;
+        border-left: 4px solid var(--sandstone-color, #3949ab);
+        padding-left: 0.7rem;
+        letter-spacing: 0.5px;
+    }
+    .resume-entry {
+        margin-bottom: 1.2rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+    .resume-icon {
+        width: 38px;
+        height: 38px;
+        background: var(--offset-background-color, #e8eaf6);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--sandstone-color, #3949ab);
+        flex-shrink: 0;
+        margin-top: 2px;
+        box-shadow: 0 2px 8px rgba(41,65,146,0.07);
+    }
+    .resume-entry-content {
+        flex: 1;
+    }
+    .resume-entry-title {
+        font-weight: bold;
+        font-size: 1.1rem;
+        color: var(--text-color, #222);
+    }
+    .resume-entry-meta {
+        font-size: 0.97rem;
+        color: var(--text-color, #666);
+        margin-bottom: 0.2rem;
+    }
+    .resume-entry-meta ul li {
+        font-size: 0.97rem;
+        color: var(--text-color, #666);
+        margin-bottom: 0.2rem;
+    }
+    .resume-entry-desc {
+        margin: 0.2rem 0 0.5rem 0;
+        color: var(--text-color, #444);
+    }
+    .resume-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.2rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .resume-list li {
+        background: var(--offset-background-color, #e8eaf6);
+        color: var(--leather-brown);
+        padding: 0.3rem 0.8rem;
+        border-radius: 16px;
+        font-size: 0.98rem;
+    }
+    .resume-links a {
+        color: var(--ocean-color, #1e88e5);
+        text-decoration: none;
+        margin-right: 1.2rem;
+    }
+    .resume-links a:hover {
+        text-decoration: underline;
+    }
+    .resume-downloads {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        justify-content: flex-end;
+    }
+    .resume-downloads button, .resume-downloads a {
+        background: var(--ocean-color);
+        color: var(--background-color, #fff);
+        border: none;
+        border-radius: 6px;
+        padding: 0.5rem 1.2rem;
+        font-size: 1rem;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background 0.2s;
+    }
+    .resume-downloads button:hover, .resume-downloads a:hover {
+        background: var(--ocean-color, #1a237e);
+        color: var(--background-color, #fff);
+    }
+    @media (max-width: 600px) {
+        .resume-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .resume-contact {
+            text-align: left;
+            margin-top: 1rem;
+        }
+        .resume-container {
+            padding: 1.2rem 0.5rem;
+        }
+        .resume-entry {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .resume-icon {
+            margin-bottom: 0.2rem;
+            margin-right: 0.4rem;
+        }
+        .resume-downloads {
+            justify-content: flex-start;
+        }
+    }
+</style>
 {% endblock %}
 
 {% block content %}
-<h1>Resume</h1>
-<p>For a traditional PDF resume,
-    <a href="https://drive.google.com/file/d/1Bj7AYY6WU3N8RbUoPr4XTf6KPAB0ZEXE/view?usp=sharing" target="_blank">click here!</a></p>
-<hr>
-<br>
-<div class="flexcontainer">
-    <img src="{% static 'img/resumeprof.png' %}" class="outline-bubble hoverScale" style="width:15%; top:4vw;"></div>
-    <h1 class="hoverScale" style="position:absolute; left:30%; font-size:4vw; top:6vw">BRANDON LEE</h1>
-    <a href="mailto:brandon.sangmin.lee@gmail.com" class="solid-bubble hoverScale" style="color:white; width:8%; height:8vw; left:30%; top:11.5vw; cursor:pointer">
-        <p style="font-size:1.3vw">Email<br>📧</p>
-    </a>
-    <a href="tel:224-600-9625" class="solid-bubble hoverScale" style="color:white; width:8%; height:8vw; left:40%; top:11.5vw; cursor:pointer">
-        <p style="font-size:1.3vw">Phone<br>📞</p>
-    </a>
-    <a href="https://www.linkedin.com/in/brandon-sangmin-lee/" target="_blank" class="solid-bubble hoverScale" style="color:white; width:8%; height:8vw; left:50%; top:11.5vw; cursor:pointer">
-        <p style="font-size:1.3vw">LinkedIn<br>💼</p>
-    </a>
-    <a href="https://github.com/dabslee" target="_blank" class="solid-bubble hoverScale" style="color:white; width:8%; height:8vw; left:60%; top:11.5vw; cursor:pointer">
-        <p style="font-size:1.3vw">GitHub<br>😸</p>
-    </a>
-
-    <div class="hoverScale" style="position:absolute; width: 60%; height: 2vw; top:32vw; left:20%; background-color: var(--ocean-color);"></div>
-    <div class="solid-bubble hoverScale" style="border-style:groove; border-color:var(--sandstone-color); border-width:1rem; width:16%; height:16vw; top:25.5vw">
-        <p style="font-size:2vw">Education<br>🎓</p>
-    </div>
-
-    <!-- NTHS -->
-    <div class="outline-bubble" style="background-size:cover; background-image:url('{% static 'img/nths.jpg' %}'); width:20%; height:20vw; top:23vw; left:36%; z-index: 0; transition: var(--transition-time)"></div>
-    <div class="outline-bubble" style="background-color: var(--ocean-color); width:20%; height:20vw; top:23vw; left:36%; z-index: 1; opacity:0.7; transition: var(--transition-time)"></div>
-    <div class="outline-bubble" style="width:20%; height:20vw; top:23vw; left:36%; z-index: 1; transition: var(--transition-time)">
-        <p style="font-size:2vw; color:white;">New Trier High School</p>
-        <div style="font-size:1vw; color:white;">Aug 2016 - May 2019</div>
-    </div>
-    <div class="outline-bubble hoverAppear" style="background-color: var(--ocean-color); width:20%; height:20vw; top:23vw; left:36%; z-index: 1; transition: var(--transition-time); color:white; font-size: 1vw;">
-        <p><i>High School Diploma</i><br>
-            <b>GPA:</b> 3.9/4.0<br>
-            <b>Testing:</b> 36/36 ACT, 1590/1600 SAT</p>
-        <p> Founder of <a href="https://binaryheart.org/" style="color:white; text-decoration: underline;">BinaryHeart</a>, a charity that fixes and donates computers.<br>
-            Captain of CS & Chem Clubs.<br>
-            Lead Coder of FTC Robotics team.</p>
-        <p>​📍 Winnetka, IL</p>
-    </div>
-
-    <!-- Princeton -->
-    <div class="outline-bubble" style="background-size:cover; background-image:url('{% static 'img/pton.jpg' %}'); width:20%; height:20vw; top:23vw; left:67%; z-index: 0; transition: var(--transition-time)"></div>
-    <div class="outline-bubble" style="background-color: var(--sandstone-color); width:20%; height:20vw; top:23vw; left:67%; z-index: 1; opacity:0.7; transition: var(--transition-time)"></div>
-    <div class="outline-bubble" style="border-color: var(--sandstone-color); width:20%; height:20vw; top:23vw; left:67%; z-index: 1; transition: var(--transition-time)">
-        <p style="font-size:2vw; color:white;">Princeton<br>University</p>
-        <div style="font-size:1vw; color:white;">Sep 2019 - May 2023</div>
-    </div>
-    <div class="outline-bubble hoverAppear" style="border-color: var(--sandstone-color); background-color: var(--sandstone-color); width:20%; height:20vw; top:23vw; left:67%; z-index: 1; transition: var(--transition-time); color:white; font-size: 1vw">
-        <p><i>Pursuing BSE in <a href="https://orfe.princeton.edu/" target="_blank" style="color:white; text-decoration: underline;">ORFE</a></i><br>
-            <b>GPA:</b> 3.8/4.0</p>
-        <p>Pursuing concentrations (minors) in finance, machine learning, and global health.
-            A member of the <a href="https://www.facebook.com/PU.Nonprofit.Consulting/" target="_blank" style="color:white; text-decoration: underline;">consulting club</a>
-            and the <a href="https://princetonea.org/events/arete-fellowship-2019-2020/#page-content" target="_blank" style="color:white; text-decoration: underline;">Arete
-                Fellowship for Effective Altruism</a>.</p>
-        <p>​📍 Princeton, NJ</p>
-    </div>
-
-    <!-- Work experience -->
-    <div class="hoverScale" style="position:absolute; width: 8%; height: 2vw; top:64vw; left:20.5%; background-color: var(--ocean-color); transform: rotate(65deg); transition: var(--transition-time)"></div>
-    <div class="hoverScale" style="position:absolute; width: 8%; height: 2vw; top:64vw; left:31.5%; background-color: var(--ocean-color); transform: rotate(120deg); transition: var(--transition-time)"></div>
-    <div class="hoverScale" style="position:absolute; width: 24%; height: 2vw; top:72vw; left:35%; background-color: var(--ocean-color); transform: rotate(-3deg); transition: var(--transition-time)"></div>
-    <div class="hoverScale" style="position:absolute; width: 12%; height: 2vw; top:79.5vw; left:30%; background-color: var(--ocean-color); transform: rotate(44deg); transition: var(--transition-time)"></div>
-    <div class="hoverScale" style="position:absolute; width: 30%; height: 2vw; top:85vw; left:13.5%; background-color: var(--ocean-color); transform: rotate(92.5deg); transition: var(--transition-time)"></div>
-    <div class="solid-bubble hoverScale" style="border-style:groove; border-color:var(--sandstone-color); border-width:1rem; width:16%; height:16vw; top:65vw; left:20vw">
-        <p style="font-size:2vw">Work Experience<br>💼</p>
-    </div>
-
-    <!-- Anthem Data Analytics Intern -->
-    <p class="hoverScale" style="color:var(--sandstone-color); top:48vw; left:17vw; font-size:1.5vw">Upcoming</p>
-    <a href="https://anthem.referrals.selectminds.com/student-programs/jobs/data-analyst-intern-undergraduate-summer-2021-57565" target="_blank" class="solid-bubble hoverScale" style="opacity:1; background-color: var(--sandstone-color); width:13%; height:13vw; top:50vw; left:14.5vw; cursor:pointer">
-        <img src="{% static 'img/anthemwhite.png' %}" style="width:70%"></img>
-        <p style="font-size:1vw; color:white;">Data Analytics Intern<br><i>Summer 2021</i></p>
-    </a>
-
-    <!-- PUNC -->
-    <p id="instruct" class="hoverScale" style="color:var(--sandstone-color); top:55vw; left:50%; font-size:1.2vw; opacity:0;"><b>☚</b> Click to expand</p>
-    <div id="opener-punc" class="openpiece" style="top:48vw; left:40%">
-        <p><b>May 2020 - Present: Project Manager</b><br>
-        Lead a project to develop an upselling strategy for <a href="https://www.1fortheworld.org/" target="_blank">One for the World</a>, a
-        donation aggregator and awareness promoter for the effective altruism movement,
-        targeting its regular monthly donors.</p>
-        <p><b>Oct 2019 - May 2020: Consultant</b><br>
-            Formulated recommendations for <a href="https://hugsforbrady.org/" target="_blank">Hugs for Brady</a>, a non-profit raising
-            money for pediatric leukemia research, to improve its online presence
-            and increase its revenue.</p>
-        <p>​📍 Princeton, NJ</p>
-    </div>
-    <p class="hoverScale" style="color:var(--sandstone-color); top:45.9vw; left:37.5%; font-size:1.5vw">Current</p>
-    <div id="icon-punc" class="solid-bubble hoverScale" style="background-color: var(--sandstone-color); width:16%; height:16vw; top:48vw; left:32vw; cursor:pointer">
-        <img src="{% static 'img/punc.png' %}" style="width:60%"></img>
-        <p style="font-size:1vw; color:white;">Project Manager<br><i>Oct 2019 - Present</i></p>
-    </div>
-
-    <!-- NTCD -->
-    <div id="opener-ntcd" class="openpiece" style="top:66vw; left:55%; height:12vw; width:20%; padding-left:8vw">
-        <p>Co-founded and served as Director of Operations (COO) of NTCD, a New
-            Trier High School alumni and student organization helping the school administration
-            deal with racial issues. Oversaw long-term planning, scheduling, fundraising,
-            marketing, and human resources.</p>
-        <p>​📍 Winnetka, IL</p>
-    </div>
-    <div id="icon-ntcd" class="solid-bubble hoverScale" style="background-color: var(--ocean-color); width:13%; height:13vw; top:66vw; left:48vw; cursor:pointer">
-        <img src="{% static 'img/ntcd.png' %}" style="width:30%"></img>
-        <p style="font-size:1vw; color:white;">COO, Co-founder<br><i>Jul 2020 - Dec 2020</i></p>
-    </div>
-
-    <!-- Agile Rainmakers -->
-    <div id="opener-agile" class="openpiece" style="top:81vw; left:44%">
-        <p>Summer intern at <a href="https://www.agilerainmakers.com/" target="_blank">Agile Rainmakers</a>, a business development consulting firm. Worked
-            on various consulting projects for clients in the financial, healthcare, energy,
-            and digital marketing sectors; engaged in social media marketing, analyzing
-            industry competition, facilitating surveys, analyzing data through SQL, and
-            researching business partnership leads.</p>
-        <p>​📍 Chicago, IL</p>
-    </div>
-    <div id="icon-agile" class="solid-bubble hoverScale" style="opacity:1; background-color: var(--ocean-color); width:16%; height:16vw; top:81vw; left:36vw; cursor:pointer">
-        <img src="{% static 'img/agile.png' %}" style="width:60%"></img>
-        <p style="font-size:1vw; color:white;">Summer Intern<br><i>Jun 2020 - Aug 2020</i></p>
-    </div>
-
-    <!-- Exicure -->
-    <div id="opener-exicure" class="openpiece" style="top:99vw; left:29%; height:12vw; width:27%; padding-left:7vw">
-        <p>Worked as summer intern at <a href="http://www.exicuretx.com/" target="_blank">Exicure, Inc.</a>,
-            a biotech company developing new drugs based on patented spherical nucleic acids (SNAs). Built
-            a company portal with Python Django to facilitate the ordering, analysis, and tracking
-            of company products, mainly SNAs and oligonucleotides.
-            Automated several aspects of pre-production analysis, such as calculating molecular
-            weight, enthalpy, and predicted molecular size.</p>
-        <p>​📍 Evanston, IL</p>
-    </div>
-    <div id="icon-exicure" class="solid-bubble hoverScale" style="opacity:1; background-color: var(--ocean-color); width:13%; height:13vw; top:99vw; left:21vw; cursor:pointer">
-        <img src="{% static 'img/exicurelogowhite.png' %}" style="width:60%"></img>
-        <p style="font-size:1vw; color:white;">Summer Intern<br><i>Jun 2019 - Aug 2019</i></p>
-    </div>
+<div class="resume-container" id="resume-root">
+    <!-- Resume will be rendered here by JS -->
 </div>
-{% endblock %}
+<script>
+// Resume JSON data
+const resumeData = {
+    name: "Brandon Lee",
+    email: "brandon.sangmin.lee@gmail.com",
+    phone: "+1 (224) 600-9625",
+    address: "331 Romona Rd, Wilmette IL 60091",
+    education: [
+        {
+            icon: "🎓",
+            school: "Princeton University",
+            degree: "B.S.E. in Operations Research and Financial Engineering, Minor in Statistics and Machine Learning",
+            location: "Princeton, NJ",
+            dates: "Sep 2019 - May 2024",
+            gpa: "3.8/4.0",
+            desc: "Key coursework: Machine Learning, Optimization, E-Commerce, Algorithms, Programming Systems, Econometrics, Stochastic Systems, Monte Carlo Simulations, Neuroeconomics."
+        },
+        {
+            icon: "🏫",
+            school: "New Trier High School",
+            degree: "High School Diploma",
+            location: "Winnetka, IL",
+            dates: "Aug 2016 - May 2019",
+            gpa: "3.9/4.0",
+            desc: "Test scores: ACT 36/36, SAT 1590/1600."
+        }
+    ],
+    work: [
+        {
+            icon: "🌐",
+            company: "Planet Networks, Inc.",
+            role: "Corporate Strategy Analyst",
+            location: "Newton, NJ",
+            dates: "Jul 2024 - Present",
+            desc: "Leveraging data science and programming to optimize operations and assist with financial reports for capital market deals at a fiber-based ISP."
+        },
+        {
+            icon: "🚑",
+            company: "MedEx Ambulance Services",
+            role: "Emergency Medical Technician (EMT)",
+            location: "Chicago, IL",
+            dates: "Oct 2021 - Apr 2022",
+            desc: "Rendered emergency services and ambulance transportation; performed interfacility transports, responded to noncritical emergency calls, and administered basic patient assessment and treatments."
+        },
+        {
+            icon: "🏥",
+            company: "Anthem, Inc.",
+            role: "Digital Strategy Summer Intern",
+            location: "Indianapolis, IN",
+            dates: "Jun 2021 – Aug 2021",
+            desc: "Evaluated digital product performance and presented results to management; used Power BI and Adobe Analytics to analyze and present customer satisfaction data for the Sydney Health platform."
+        },
+        {
+            icon: "💼",
+            company: "Agile Rainmakers",
+            role: "Summer Intern",
+            location: "Chicago, IL",
+            dates: "Jun 2020 - Aug 2020",
+            desc: "Worked on consulting projects for clients in finance, healthcare, energy, and digital marketing; engaged in social media marketing, competition analysis, surveys, SQL data analysis, and business research."
+        },
+        {
+            icon: "🧪",
+            company: "Exicure, Inc.",
+            role: "Summer Intern",
+            location: "Skokie, IL",
+            dates: "Jun 2019 - Aug 2019",
+            desc: "Built a Python Django portal for pharmaceutical product management and automated pre-production product analysis."
+        }
+    ],
+    extracurriculars: [
+        {
+            icon: "🤝",
+            org: "Princeton University Nonprofit Consulting (PUNC)",
+            role: "Consultant, Project Manager",
+            location: "Princeton, NJ",
+            dates: "Oct 2019 - Jan 2024",
+            bullets: [
+                "Sep '23 - Jan '24: Created a “State of the Organization” document for Lake County Free Clinic as part of a long-term growth plan.",
+                "May '20 - May '21: Designed and executed an upsell campaign for One for the World, supporting global poverty reduction.",
+                "Oct '19 - May '20: Formulated recommendations for Hugs for Brady to improve online presence and revenue."
+            ]
+        }
+    ],
+    skills: [
+        "Python", "SQL", "Java", "C++", "R", "Stata", "Matlab", "HTML & CSS", "Javascript", "ReactJS", "Django", "Power BI", "Adobe Analytics", "Excel", "Git/Github", "Machine Learning", "Optimization", "Data Analysis", "Database Management", "Automation", "Consulting", "Agile", "Statistics", "Econometrics", "Financial Engineering", "Communication", "Spanish", "Podcasting", "EMT-B"
+    ],
+    links: [
+        { label: "Personal Website", url: "https://www.brandonssandbox.com/" },
+        { label: "LinkedIn", url: "https://www.linkedin.com/in/brandon-sangmin-lee/" }
+    ],
+    hobbies: "Swimming, reading comics, art, climbing trees, podcasts, Dungeons and Dragons"
+};
 
-{% block script %}
-<script src="{% static 'js/resume.js' %}"></script>
+// Render resume HTML from JSON
+function renderResume(data) {
+    const root = document.getElementById('resume-root');
+    root.innerHTML = `
+    <div class="resume-header">
+        <div>
+            <h1>${data.name}</h1>
+        </div>
+        <div class="resume-contact">
+            <div><strong>Email:</strong> <a href="mailto:${data.email}">${data.email}</a></div>
+            <div><strong>Phone:</strong> <a href="tel:${data.phone.replace(/[^+\d]/g,'')}">${data.phone}</a></div>
+            <div><strong>Address:</strong> ${data.address}</div>
+        </div>
+    </div>
+    <div class="resume-downloads">
+        <a href="https://drive.google.com/file/d/1wmVpZQSKZOQVO_IOoKZO9RpkBOH9n6EP/view?usp=sharing" target="_blank" rel="noopener">Download as PDF</a>
+        <a onclick="downloadTxtResume()">Download as TXT</a>
+    </div>
+    <div class="resume-section">
+        <h2>Education</h2>
+        ${data.education.map(e => `
+        <div class="resume-entry">
+            <div class="resume-icon" title="${e.school}">${e.icon}</div>
+            <div class="resume-entry-content">
+                <div class="resume-entry-title">${e.school}</div>
+                <div class="resume-entry-meta">${e.degree} &mdash; ${e.location}<br>
+                ${e.dates} | GPA: ${e.gpa}</div>
+                <div class="resume-entry-desc">${e.desc}</div>
+            </div>
+        </div>
+        `).join('')}
+    </div>
+    <div class="resume-section">
+        <h2>Work Experience</h2>
+        ${data.work.map(w => `
+        <div class="resume-entry">
+            <div class="resume-icon" title="${w.company}">${w.icon}</div>
+            <div class="resume-entry-content">
+                <div class="resume-entry-title">${w.company}</div>
+                <div class="resume-entry-meta">${w.role} &mdash; ${w.location}<br>
+                ${w.dates}</div>
+                <div class="resume-entry-desc">${w.desc}</div>
+            </div>
+        </div>
+        `).join('')}
+    </div>
+    <div class="resume-section">
+        <h2>Extracurriculars</h2>
+        ${data.extracurriculars.map(x => `
+        <div class="resume-entry">
+            <div class="resume-icon" title="${x.org}">${x.icon}</div>
+            <div class="resume-entry-content">
+                <div class="resume-entry-title">${x.org}</div>
+                <div class="resume-entry-meta">${x.role} &mdash; ${x.location}<br>
+                ${x.dates}</div>
+                <ul>
+                    ${x.bullets.map(b => `<li>${b}</li>`).join('')}
+                </ul>
+            </div>
+        </div>
+        `).join('')}
+    </div>
+    <div class="resume-section">
+        <h2>Skills</h2>
+        <ul class="resume-list">
+            ${data.skills.map(skill => `<li>${skill}</li>`).join('')}
+        </ul>
+    </div>
+    <div class="resume-section">
+        <h2>Miscellaneous</h2>
+        <div class="resume-links">
+            ${data.links.map(link => `<a href="${link.url}" target="_blank">${link.label}</a>`).join('')}
+        </div>
+        <div class="resume-entry-desc">
+            <strong>Hobbies:</strong> ${data.hobbies}
+        </div>
+    </div>
+    `;
+}
+renderResume(resumeData);
+
+// Download as TXT using the same JSON
+function downloadTxtResume() {
+    const d = resumeData;
+    let txt = `${d.name}
+Email: ${d.email}
+Phone: ${d.phone}
+Address: ${d.address}
+
+EDUCATION
+${d.education.map(e =>
+`${e.school} (${e.dates}, ${e.location})
+${e.degree}
+GPA: ${e.gpa}
+${e.desc}
+`).join('\n')}
+
+WORK EXPERIENCE
+${d.work.map(w =>
+`${w.company} (${w.dates}, ${w.location})
+${w.role}
+${w.desc}
+`).join('\n')}
+
+EXTRACURRICULARS
+${d.extracurriculars.map(x =>
+`${x.org} (${x.dates}, ${x.location})
+${x.role}
+${x.bullets.map(b => '- ' + b).join('\n')}
+`).join('\n')}
+
+SKILLS
+${d.skills.join(', ')}
+
+MISCELLANEOUS
+${d.links.map(l => `${l.label}: ${l.url}`).join('\n')}
+Hobbies: ${d.hobbies}
+`;
+    const blob = new Blob([txt], {type: 'text/plain'});
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'Brandon_Lee_Resume.txt';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+</script>
 {% endblock %}
