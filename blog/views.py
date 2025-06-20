@@ -13,7 +13,7 @@ def index(request, page=1):
     if request.method == 'POST':
         query=None
         selected_tag_id = None
-        posts = Post.objects.all().order_by('id').reverse()
+        posts = Post.objects.all().order_by('-created')  # Order by most recent date first
         if "searchbar" in request.POST:
             query = request.POST['searchbar']
             posts = posts.filter(Q(title__icontains=query) | Q(content__icontains=query))
@@ -28,7 +28,7 @@ def index(request, page=1):
         return render(request, "index.html", {"posts":posts, "previous":0, "searchquery":query, "selected_tag_id":selected_tag_id, "tags":tags})
     else:
         page = int(page)
-        posts = Post.objects.all().order_by('id').reverse()
+        posts = Post.objects.all().order_by('-created')  # Order by most recent date first
         maxpage = math.ceil(len(posts)/7)
         posts = posts[7*(page-1):7*page]
         if page < maxpage:
