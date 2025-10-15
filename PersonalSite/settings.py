@@ -21,9 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-from .secret_key import SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+from . import secret_key
+SECRET_KEY = secret_key.SECRET_KEY
+DEBUG = secret_key.DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -80,11 +81,14 @@ WSGI_APPLICATION = 'PersonalSite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'personalsite',
+        'USER': secret_key.db_user,
+        'PASSWORD': secret_key.db_pass,
+        'HOST': secret_key.db_host,
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

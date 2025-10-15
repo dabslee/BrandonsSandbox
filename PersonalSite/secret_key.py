@@ -1,1 +1,0 @@
-SECRET_KEY = "wfl#$e_u6r!ppd#jz7=0w96w0b8myab=m9@abo1p_@4jzxf5yg"
