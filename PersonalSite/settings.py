@@ -26,7 +26,7 @@ from . import secret_key
 SECRET_KEY = secret_key.SECRET_KEY
 DEBUG = secret_key.DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [] + secret_key.ALLOWED_HOSTS_IPS
 
 # Application definition
 
