@@ -26,7 +26,7 @@ from . import secret_key
 SECRET_KEY = secret_key.SECRET_KEY
 DEBUG = secret_key.DEBUG
 
-ALLOWED_HOSTS = ['www.brandonssandbox.com', 'brandonssandbox.com', '.herokuapp.com', '127.0.0.1'] + secret_key.ALLOWED_HOSTS_IPS
+ALLOWED_HOSTS = ['.brandonssandbox.com', '.herokuapp.com', '127.0.0.1', 'localhost'] + secret_key.ALLOWED_HOSTS_IPS
 
 # Application definition
 
