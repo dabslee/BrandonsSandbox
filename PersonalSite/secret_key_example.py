@@ -1,6 +1,9 @@
 # django settings
 SECRET_KEY = "XXX"
 DEBUG = True
+ALLOWED_HOSTS_IPS = [
+    "XXX",
+]
 
 # database connection
 db_user = 'XXX'
