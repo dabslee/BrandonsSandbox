@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://www.brandonssandbox.com']
+CSRF_TRUSTED_ORIGINS = ['https://brandonssandbox.com', 'https://personal.brandonssandbox.com', 'https://www.brandonssandbox.com']
 
 ROOT_URLCONF = 'PersonalSite.urls'
 
