@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .
+    container_name: brandonssandbox
+    restart: unless-stopped
+    # Host network: gunicorn binds 127.0.0.1:8000 (same as before, unreachable
+    # externally) and reaches the localhost-only host Postgres at 127.0.0.1:5432.
+    network_mode: host
+    user: "1000:1000"
+    volumes:
+      - ./PersonalSite/secret_key.py:/app/PersonalSite/secret_key.py:ro  # secrets never enter the image
+      - ./staticfiles:/app/staticfiles                                   # collectstatic target; nginx serves from host

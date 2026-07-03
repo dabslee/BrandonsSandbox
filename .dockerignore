@@ -1,0 +1,11 @@
+myenv/
+staticfiles/
+__pycache__/
+*.pyc
+*.log
+*.bak
+*.bak.*
+nohup.out
+db.sqlite3
+.git/
+PersonalSite/secret_key.py
