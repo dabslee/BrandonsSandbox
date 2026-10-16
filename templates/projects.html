@@ -3,240 +3,511 @@
 {% block style %}
 <title>Brandon's Sandbox - Projects</title>
 <link rel="stylesheet" type="text/css" href="{% static 'css/projects.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 {% endblock %}
 
 {% block content %}
-<div class="projectcontainer">
-    <div class="projectblock">
-        <h2>Gomoku</h2>
-        <img src="https://github.com/dabslee/Board-Games/blob/master/Screenshots/desktop_home.png?raw=true" class="projectimagebox">
-        <div class="buttonholder">
-            <a href="https://github.com/dabslee/Board-Games" target="_blank" class="button" style="display: inline;">Code</a>
-            <a href="https://games.brandonssandbox.com/Gomoku" target="_blank" class="button" style="display: inline;">Demo</a>
-            <a href="https://github.com/dabslee/Board-Games/raw/refs/heads/master/GomokuApp/releases/GomokuApp.apk" class="button" style="display: inline;">Install</a>
+<script id="projects-data" type="application/json">
+[
+    {
+        "name": "Gomoku",
+        "date": "2026-02",
+        "image": "https://github.com/dabslee/Board-Games/blob/master/Screenshots/desktop_home.png?raw=true",
+        "code": "https://github.com/dabslee/Board-Games",
+        "demo": "https://games.brandonssandbox.com/Gomoku",
+        "install": "https://github.com/dabslee/Board-Games/raw/refs/heads/master/GomokuApp/releases/GomokuApp.apk",
+        "description": "A simple Gomoku (Five in a Row) game built with React Native and Expo. Supports offline play against computers (with MiniMax AI) or players on the same device, as well as online multiplayer via a lightweight Flask backend.",
+        "tags": ["game", "webapp", "mobile", "React Native", "Python", "Flask"]
+    },
+    {
+        "name": "ListenerLibrary",
+        "date": "2025-10",
+        "image": "https://raw.githubusercontent.com/dabslee/ListenerLibrary/refs/heads/master/screenshots/focused.png",
+        "code": "https://github.com/dabslee/ListenerLibrary",
+        "demo": "https://listen.brandonssandbox.com/",
+        "description": "A mobile-friendly, web-based music player application that allows users to upload, listen to, and keep track of listening progress on their files. Provides core music player functionalities like playback control, track seeking, playlist management, and sleep timers.",
+        "tags": ["webapp", "Django", "Python", "JavaScript", "HTML/CSS"]
+    },
+    {
+        "name": "Karaoke Unlimited",
+        "date": "2025-06",
+        "image": "https://raw.githubusercontent.com/dabslee/Karaoke/refs/heads/master/assets/img/homescreen.png",
+        "code": "https://github.com/dabslee/Karaoke",
+        "demo": "https://github.com/dabslee/Karaoke/raw/refs/heads/master/assets/demo.mp4",
+        "description": "A free webapp for conducting home Karaoke sessions: Rather than relying on a preset bank of songs to choose from, KU allows you to choose songs from videos on YouTube. After singing along, KU uses the YIN scoring algorithm to rate your performance.",
+        "tags": ["webapp", "React", "Python", "Flask", "CSS"]
+    },
+    {
+        "name": "leatherbound",
+        "date": "2021-07",
+        "image": "{% static 'img/leatherbound.png' %}",
+        "code": "https://github.com/dabslee/leatherbound",
+        "demo": "https://leatherbound.brandonssandbox.com",
+        "description": "A custom new tab page for Google Chrome built on <a href='https://react.dev/' target='_blank'>React</a> based on the bullet journal asthetic. Uses cookies to store notes and displays weather based on Chicago, IL.",
+        "tags": ["webapp", "React", "JavaScript", "HTML/CSS"]
+    },
+    {
+        "name": "aristotle°",
+        "date": "2021-03",
+        "image": "{% static 'img/aristotle.png' %}",
+        "code": "https://github.com/dabslee/aristotle/",
+        "description": "A free, open-source learning management system (LMS) built on <a href='https://www.djangoproject.com/' target='_blank'>Django</a> and deployed on <a href='https://dashboard.heroku.com/' target='_blank'>Heroku</a>.",
+        "tags": ["webapp", "Django", "Python", "JavaScript", "HTML/CSS"]
+    },
+    {
+        "name": "Brandon's Sandbox",
+        "date": "2021-03",
+        "image": "{% static 'img/website.PNG' %}",
+        "code": "https://github.com/dabslee/BrandonsSandbox",
+        "demo": "{% url 'home' %}",
+        "description": "This website! A personal website for hosting my thoughts and projects. Made with Python <a href='https://www.djangoproject.com/' target='_blank'>Django</a> and deployed with <a href='https://dashboard.heroku.com/' target='_blank'>Heroku</a>.",
+        "tags": ["webapp", "Django", "Python", "JavaScript", "HTML/CSS"]
+    },
+    {
+        "name": "OpenDiscussion",
+        "date": "2021-02",
+        "image": "{% static 'img/opendiscussion.PNG' %}",
+        "code": "https://github.com/dabslee/OpenDiscussion",
+        "description": "A <a href='https://reddit.com' target='_blank'>Reddit</a>-like forum site arranged around essay posts, which can be original essays or responses to other essays. Readers can vote on whether they agree with the post and whether they think the post makes a strong argument. Made with <a href='https://www.djangoproject.com/' target='_blank'>Django</a>.",
+        "tags": ["webapp", "Django", "Python", "JavaScript", "HTML/CSS"]
+    },
+    {
+        "name": "BowlingSim",
+        "date": "2021-02",
+        "image": "{% static 'img/bowlingsim.png' %}",
+        "code": "https://github.com/dabslee/BowlingSim",
+        "demo": "https://github.com/dabslee/BowlingSim/blob/master/analysis.ipynb",
+        "description": "Simulates a bowling game based on a simple model where pins fall more easily if the pins around them have fallen. Presents an analysis of the model's results in a <a href='https://jupyter.org/' target='_blank'>Juypter</a> notebook.",
+        "tags": ["simulation", "data visualization", "Python", "Jupyter"]
+    },
+    {
+        "name": "Chessling",
+        "date": "2020-01",
+        "image": "{% static 'img/chess.PNG' %}",
+        "code": "https://github.com/dabslee/Chessling",
+        "description": "Chess, created on a challenge with friends on coding chess as fast as we possibly could. Made in 7 hours. GUI uses Python <a href='https://www.pygame.org/' target='_blank'>pygame</a> library.",
+        "tags": ["game", "Python", "pygame"]
+    },
+    {
+        "name": "FRED Relation Analyzer",
+        "date": "2020-01",
+        "image": "{% static 'img/relationship.PNG' %}",
+        "code": "https://github.com/dabslee/Economics-Sandbox/tree/master/relationanalyzer",
+        "description": "Takes <a href='https://fred.stlouisfed.org/' target='_blank'>FRED</a> time series and returns linear fits. Can compare two time series or several time series against each other, returning the slopes and R^2 values of the fits.",
+        "tags": ["data visualization", "MATLAB"]
+    },
+    {
+        "name": "Yield Curve Web Scraper",
+        "date": "2019-11",
+        "image": "{% static 'img/yield.PNG' %}",
+        "code": "https://github.com/dabslee/Economics-Sandbox/tree/master/yieldcurve",
+        "description": "Uses Java to download and parse all the <a href='https://www.treasury.gov/resource-center/data-chart-center/interest-rates/pages/textview.aspx?data=yield' target='_blank'>yield curve data from the U.S. treasury website,</a> putting the results in a csv file. Includes a MATLAB application which renders an animation of the yield curve over time.",
+        "tags": ["data visualization", "Java", "MATLAB"]
+    },
+    {
+        "name": "Brownian Motion Sim",
+        "date": "2020-01",
+        "image": "{% static 'img/brown.PNG' %}",
+        "code": "https://github.com/dabslee/Science-Simulations/tree/master/Brownian%20Motion",
+        "description": "Offers a particle based simulation of 1D <a href='https://en.wikipedia.org/wiki/Brownian_motion' target='_blank'>Brownian motion</a> and shows that it is analogous to a 1D random walk. Also simulates and animates n-dimensional random walks.",
+        "tags": ["simulation", "data visualization", "MATLAB"]
+    },
+    {
+        "name": "Luria-Delbruck Simulator",
+        "date": "2019-11",
+        "image": "{% static 'img/luria.PNG' %}",
+        "code": "https://github.com/dabslee/Science-Simulations/blob/master/Luria-Delbruck",
+        "description": "A simulation of the <a href='https://en.wikipedia.org/wiki/Luria%E2%80%93Delbr%C3%BCck_experiment' target='_blank'>Luria-Delbrück Fluctuation Test</a>, which showed the correctness of the \"mutation hypothesis\" over the \"acquired immunity hypothesis.\" Uses <a href='https://www.pygame.org/' target='_blank'>pygame</a> to render results.",
+        "tags": ["simulation", "data visualization", "Python", "pygame"]
+    },
+    {
+        "name": "SuperTyper",
+        "date": "2019-10",
+        "image": "{% static 'img/racing.png' %}",
+        "code": "https://github.com/dabslee/SuperTyper",
+        "demo": "https://thebslee.itch.io/supertyper",
+        "description": "A fun little game with lots of interesting passages to practice your typing! Simulates a racing game, where the faster you type, the faster your car goes--try to beat the other cars to the finish line! Written with Python's <a href='https://www.pygame.org/' target='_blank'>pygame</a> library.",
+        "tags": ["game", "Python", "pygame"]
+    },
+    {
+        "name": "Rina the Assistant",
+        "date": "2019-10",
+        "image": "{% static 'img/rina.png' %}",
+        "code": "https://github.com/dabslee/Assistant",
+        "description": "A digital assistant to help you live a more productive life. Written with Python's <a href='https://www.pygame.org/' target='_blank'>pygame</a> library.",
+        "tags": ["Python", "pygame"]
+    },
+    {
+        "name": "Project Euler Solutions",
+        "date": "2019-09",
+        "image": "{% static 'img/euler.jpg' %}",
+        "code": "https://github.com/dabslee/Project-Euler",
+        "description": "My solutions to a few of the Project Euler problems written in C++, Java, Python, and VBA.",
+        "tags": ["algorithms", "C++", "Java", "Python", "VBA"]
+    }
+]
+</script>
+<div class="projectcontrols">
+    <div class="projectcontrols-bar">
+        <input type="text" id="project-search" placeholder="Search projects" aria-label="Search projects by name or description">
+        <div class="projectdropdown">
+            <button type="button" id="project-view-toggle" class="button projectdropdown-toggle" aria-expanded="false" aria-controls="project-view-menu">Show as <i class="bi bi-layers"></i></button>
+            <div id="project-view-menu" class="projectdropdown-menu projectdropdown-menu-compact" hidden>
+                <div class="projectcontrols-row" id="project-view">
+                    <button type="button" class="tag" data-view="category">By Category</button>
+                    <button type="button" class="tag" data-view="ungrouped">Ungrouped</button>
+                </div>
+            </div>
         </div>
-        <p>A simple Gomoku (Five in a Row) game built with React Native and Expo. Supports offline play against computers (with MiniMax AI) or players on the same device, as well as online multiplayer via a lightweight Flask backend.</p>
-        <div class="technology">
-            <p style="color:gray; font-style: italic;">February 2026</p>
-            <b>Technology:</b> React Native, Python/Flask
-        </div>
-    </div>
-    <div class="projectblock">
-        <h2>ListenerLibrary</h2>
-        <img src="https://raw.githubusercontent.com/dabslee/ListenerLibrary/refs/heads/master/screenshots/focused.png" class="projectimagebox">
-        <div class="buttonholder">
-            <a href="https://github.com/dabslee/ListenerLibrary" target="_blank" class="button" style="display: inline;">Code</a>
-            <a href="https://listen.brandonssandbox.com/" target="_blank" class="button" style="display: inline;">Demo</a>
-        </div>
-        <p>A mobile-friendly, web-based music player application that allows users to upload, listen to, and keep track of listening progress on their files. Provides core music player functionalities like playback control, track seeking, playlist management, and sleep timers.</p>
-        <div class="technology">
-            <p style="color:gray; font-style: italic;">October 2025</p>
-            <b>Technology:</b> Django, Python, JavaScript, HTML, CSS
-        </div>
-    </div>
-    <div class="projectblock">
-        <h2>Karaoke Unlimited</h2>
-        <img src="https://raw.githubusercontent.com/dabslee/Karaoke/refs/heads/master/assets/img/homescreen.png" class="projectimagebox">
-        <div class="buttonholder">
-            <a href="https://github.com/dabslee/Karaoke" target="_blank" class="button" style="display: inline;">Code</a>
-            <a href="https://github.com/dabslee/Karaoke/raw/refs/heads/master/assets/demo.mp4" target="_blank" class="button" style="display: inline;">Demo</a>
-        </div>
-        <p>A free webapp for conducting home Karaoke sessions: Rather than relying on a preset bank of songs to choose from, KU allows you to choose songs from videos on YouTube. After singing along, KU uses the YIN scoring algorithm to rate your performance.</p>
-        <div class="technology">
-            <p style="color:gray; font-style: italic;">June 2025</p>
-            <b>Technology:</b> React/JSX, Python/Flask, CSS
-        </div>
-    </div>
-    <div class="projectblock">
-        <h2>leatherbound</h2>
-        <img src="{% static 'img/leatherbound.png' %}" class="projectimagebox">
-        <div class="buttonholder">
-            <a href="https://github.com/dabslee/leatherbound" target="_blank" class="button" style="display: inline;">Code</a>
-            <a href="https://leatherbound.brandonssandbox.com" target="_blank" class="button" style="display: inline;">Demo</a>
-        </div>
-        <p>A custom new tab page for Google Chrome built on <a href="https://react.dev/" target="_blank">React</a> based on the bullet journal asthetic. Uses cookies to store notes and displays weather based on Chicago, IL.</p>
-        <div class="technology">
-            <p style="color:gray; font-style: italic;">July 2021</p>
-            <b>Technology:</b> React, JavaScript, HTML, CSS
-        </div>
-    </div>
-    <div class="projectblock">
-        <h2>aristotle°</h2>
-        <img src="{% static 'img/aristotle.png' %}" class="projectimagebox">
-        <div class="buttonholder">
-            <a href="https://github.com/dabslee/aristotle/" target="_blank" class="button" style="display: inline;">Code</a>
-            <div class="deadbutton" style="display: inline;">Demo</div>
-        </div>
-        <p>A free, open-source learning management system (LMS) built on <a href="https://www.djangoproject.com/" target="_blank">Django</a> and deployed on <a href="https://dashboard.heroku.com/" target="_blank">Heroku</a>.</p>
-        <div class="technology">
-            <p style="color:gray; font-style: italic;">March 2021</p>
-            <b>Technology:</b> Django, Python, JavaScript, HTML, CSS
-        </div>
-    </div>
-    <div class="projectblock">
-        <h2>Brandon's Sandbox</h2>
-        <img src="{% static 'img/website.PNG' %}" class="projectimagebox">
-        <div class="buttonholder">
-            <a href="https://github.com/dabslee/BrandonsSandbox" target="_blank" class="button" style="display: inline;">Code</a>
-            <a href="{% url 'home' %}" target="_blank" class="button" style="display: inline;">Demo</a>
-        </div>
-        <p>This website! A personal website for hosting my thoughts and projects. Made with
-            Python <a href="https://www.djangoproject.com/" target="_blank">Django</a> and deployed with
-            <a href="https://dashboard.heroku.com/" target="_blank">Heroku</a>.</p>
-        <div class="technology">
-            <p style="color:gray; font-style: italic;">March 2021</p>
-            <b>Technology:</b> Django, Python, JavaScript, HTML, CSS
-        </div>
-    </div>
-    <div class="projectblock">
-        <h2>OpenDiscussion</h2>
-        <img src="{% static 'img/opendiscussion.PNG' %}" class="projectimagebox">
-        <div class="buttonholder">
-            <a href="https://github.com/dabslee/OpenDiscussion" target="_blank" class="button" style="display: inline;">Code</a>
-            <div class="deadbutton" style="display: inline;">Demo</div>
-        </div>
-        <p>A <a href="https://reddit.com" target="_blank">Reddit</a>-like forum site arranged around essay posts, which can be
-            original essays or responses to other essays. Readers can vote on
-            whether they agree with the post and whether they think the post
-            makes a strong argument. Made with <a href="https://www.djangoproject.com/" target="_blank">Django</a>.</p>
-        <div class="technology">
-            <p style="color:gray; font-style: italic;">February 2021</p>
-            <b>Technology:</b> Django, Python, JavaScript, HTML, CSS
-        </div>
-    </div>
-    <div class="projectblock">
-        <h2>BowlingSim</h2>
-        <img src="{% static 'img/bowlingsim.png' %}" class="projectimagebox">
-        <div class="buttonholder">
-            <a href="https://github.com/dabslee/BowlingSim" target="_blank" class="button" style="display: inline;">Code</a>
-            <a href="https://github.com/dabslee/BowlingSim/blob/master/analysis.ipynb" target="_blank" class="button" style="display: inline;">Demo</a>
-        </div>
-        <p>Simulates a bowling game based on a simple model where pins fall more easily if the pins
-            around them have fallen. Presents an analysis of the model's results in a
-            <a href="https://jupyter.org/" target="_blank">Juypter</a> notebook.</p>
-        <div class="technology">
-            <p style="color:gray; font-style: italic;">February 2021</p>
-            <b>Technology:</b> Python, Jupyter
-        </div>
-    </div>
-    <div class="projectblock">
-        <h2>Chessling</h2>
-        <img src="{% static 'img/chess.PNG' %}" class="projectimagebox">
-        <div class="buttonholder">
-            <a href="https://github.com/dabslee/Chessling" target="_blank" class="button" style="display: inline;">Code</a>
-            <div class="deadbutton" style="display: inline;">Demo</div>
-        </div>
-        <p>Chess, created on a challenge with friends on coding chess as fast as we possibly could.
-            Made in 7 hours. GUI uses Python <a href="https://www.pygame.org/" target="_blank">pygame</a> library.</p>
-        <div class="technology">
-            <p style="color:gray; font-style: italic;">January 2020</p>
-            <b>Technology:</b> Python, pygame
-        </div>
-    </div>
-    <div class="projectblock">
-        <h2>FRED Relation Analyzer</h2>
-        <img src="{% static 'img/relationship.PNG' %}" class="projectimagebox">
-        <div class="buttonholder">
-            <a href="https://github.com/dabslee/Economics-Sandbox/tree/master/relationanalyzer" target="_blank" class="button" style="display: inline;">Code</a>
-            <div class="deadbutton" style="display: inline;">Demo</div>
-        </div>
-        <p>Takes <a href="https://fred.stlouisfed.org/" target="_blank">FRED</a> time series and returns
-            linear fits. Can compare two time series or several time series against each other, returning
-            the slopes and R^2 values of the fits.</p>
-        <div class="technology">
-            <p style="color:gray; font-style: italic;">January 2020</p>
-            <b>Technology:</b> MATLAB
-        </div>
-    </div>
-    <div class="projectblock">
-        <h2>Yield Curve Web Scraper</h2>
-        <img src="{% static 'img/yield.PNG' %}" class="projectimagebox">
-        <div class="buttonholder">
-            <a href="https://github.com/dabslee/Economics-Sandbox/tree/master/yieldcurve" target="_blank" class="button" style="display: inline;">Code</a>
-            <div class="deadbutton" style="display: inline;">Demo</div>
-        </div>
-        <p>Uses Java to download and parse all the 
-            <a href="https://www.treasury.gov/resource-center/data-chart-center/interest-rates/pages/textview.aspx?data=yield" target="_blank">yield curve data from the U.S. treasury website,</a>
-            putting the results in a csv file. Includes a MATLAB application which
-            renders an animation of the yield curve over time.</p>
-        <div class="technology">
-            <p style="color:gray; font-style: italic;">November 2019</p>
-            <b>Technology:</b> Java, MATLAB
-        </div>
-    </div>
-    <div class="projectblock">
-        <h2>Brownian Motion Sim</h2>
-        <img src="{% static 'img/brown.PNG' %}" class="projectimagebox">
-        <div class="buttonholder">
-            <a href="https://github.com/dabslee/Science-Simulations/tree/master/Brownian%20Motion" target="_blank" class="button" style="display: inline;">Code</a>
-            <div class="deadbutton" style="display: inline;">Demo</div>
-        </div>
-        <p>Offers a particle based simulation of 1D
-            <a href="https://en.wikipedia.org/wiki/Brownian_motion" target="_blank">Brownian motion</a>
-            and shows that it is analogous to a 1D random walk. Also simulates and animates
-            n-dimensional random walks.</p>
-        <div class="technology">
-            <p style="color:gray; font-style: italic;">January 2020</p>
-            <b>Technology:</b> MATLAB
-        </div>
-    </div>
-    <div class="projectblock">
-        <h2>Luria-Delbruck Simulator</h2>
-        <img src="{% static 'img/luria.PNG' %}" class="projectimagebox">
-        <div class="buttonholder">
-            <a href="https://github.com/dabslee/Science-Simulations/blob/master/Luria-Delbruck" target="_blank" class="button" style="display: inline;">Code</a>
-            <div class="deadbutton" style="display: inline;">Demo</div>
-        </div>
-        <p>A simulation of the <a href="https://en.wikipedia.org/wiki/Luria%E2%80%93Delbr%C3%BCck_experiment" target="_blank">Luria-Delbrück Fluctuation Test</a>,
-            which showed the correctness of the "mutation hypothesis" over the "acquired immunity hypothesis."
-            Uses <a href="https://www.pygame.org/" target="_blank">pygame</a> to render results.</p>
-        <div class="technology">
-            <p style="color:gray; font-style: italic;">November 2019</p>
-            <b>Technology:</b> Python, pygame
+        <div class="projectdropdown">
+            <button type="button" id="project-dropdown-toggle" class="button projectdropdown-toggle" aria-expanded="false" aria-controls="project-dropdown-menu">Sort/Filter <i class="bi bi-filter"></i></button>
+            <div id="project-dropdown-menu" class="projectdropdown-menu" hidden>
+                <p><b>Sort by:</b></p>
+                <div class="projectcontrols-row" id="project-sort">
+                    <button type="button" class="tag" data-sort="new">Newest</button>
+                    <button type="button" class="tag" data-sort="old">Oldest</button>
+                    <button type="button" class="tag" data-sort="az">A to Z</button>
+                    <button type="button" class="tag" data-sort="za">Z to A</button>
+                </div>
+                <p><b>Available links:</b></p>
+                <div class="projectcontrols-row" id="project-link-filters">
+                    <button type="button" class="tag" data-link="Code">Code</button>
+                    <button type="button" class="tag" data-link="Demo">Demo</button>
+                    <button type="button" class="tag" data-link="Install">Install</button>
+                </div>
+                <p><b>Filter by tag:</b></p>
+                <div class="projectcontrols-row" id="project-tag-filters"></div>
+            </div>
         </div>
     </div>
-    <div class="projectblock">
-        <h2>SuperTyper</h2>
-        <img src="{% static 'img/racing.png' %}" class="projectimagebox">
-        <div class="buttonholder">
-            <a href="https://github.com/dabslee/SuperTyper" target="_blank" class="button" style="display: inline;">Code</a>
-            <a href="https://thebslee.itch.io/supertyper" target="_blank" class="button" style="display: inline;">Demo</a>
-        </div>
-        <p>A fun little game with lots of interesting passages to practice your typing!
-            Simulates a racing game, where the faster you type, the faster your car goes--try
-            to beat the other cars to the finish line! Written with Python's
-            <a href="https://www.pygame.org/" target="_blank">pygame</a> library.</p>
-        <div class="technology">
-            <p style="color:gray; font-style: italic;">October 2019</p>
-            <b>Technology:</b> Python, pygame
-        </div>
-    </div>
-    <div class="projectblock">
-        <h2>Rina the Assistant</h2>
-        <img src="{% static 'img/rina.png' %}" class="projectimagebox">
-        <div class="buttonholder">
-            <a href="https://github.com/dabslee/Assistant" target="_blank" class="button" style="display: inline;">Code</a>
-            <div class="deadbutton" style="display: inline;">Demo</div>
-        </div>
-        <p>A digital assistant to help you live a more productive life. Written with Python's
-            <a href="https://www.pygame.org/" target="_blank">pygame</a> library.</p>
-        <div class="technology">
-            <p style="color:gray; font-style: italic;">October 2019</p>
-            <b>Technology:</b> Python, pygame
-        </div>
-    </div>
-    <div class="projectblock">
-        <h2>Project Euler Solutions</h2>
-        <img src="{% static 'img/euler.jpg' %}" class="projectimagebox">
-        <div class="buttonholder">
-            <a href="https://github.com/dabslee/Project-Euler" target="_blank" class="button" style="display: inline;">Code</a>
-            <div class="deadbutton" style="display: inline;">Demo</div>
-        </div>
-        <p>My solutions to a few of the Project Euler problems written in C++, Java, Python, and VBA.</p>
-        <div class="technology">
-            <p style="color:gray; font-style: italic;">September 2019</p>
-            <b>Technology:</b> C++, Java, Python, VBA
-        </div>
-    </div>
+    <p id="project-empty" hidden>No projects match these filters.</p>
 </div>
-{% endblock %} 
+<div class="projectcontainer"></div>
+<div class="categoryview" hidden></div>
+<script>
+(function () {
+    const PROJECTS = JSON.parse(document.getElementById("projects-data").textContent);
+    const CATEGORIES = ["game", "webapp", "mobile", "simulation", "data visualization", "algorithms"];
+    const container = document.querySelector(".projectcontainer");
+    const el = (tag, props = {}, children = []) => {
+        const node = Object.assign(document.createElement(tag), props);
+        node.append(...children);
+        return node;
+    };
+    const linkButton = (label, href, newTab = true) => href
+        ? el("a", {href, className: "button", textContent: label, ...(newTab && {target: "_blank"})})
+        : el("div", {className: "deadbutton", textContent: label});
+    PROJECTS.forEach(p => {
+        const [year, month] = p.date.split("-").map(Number);
+        const block = el("div", {className: "projectblock"}, [
+            el("h2", {textContent: p.name}),
+            el("img", {src: p.image, className: "projectimagebox"}),
+            el("div", {className: "buttonholder"}, [
+                linkButton("Code", p.code),
+                linkButton("Demo", p.demo),
+                ...(p.install ? [linkButton("Install", p.install, false)] : []),
+            ]),
+            el("p", {innerHTML: p.description}),
+            el("div", {className: "projectfooter"}, [
+                el("p", {className: "projectdate",
+                    textContent: new Date(year, month - 1).toLocaleString("en-US", {month: "long", year: "numeric"})}),
+                el("div", {className: "tagholder"}, p.tags.map(t =>
+                    el("span", {className: "tag" + (CATEGORIES.includes(t) ? " tag-category" : ""), textContent: t}))),
+            ]),
+        ]);
+        Object.assign(block.dataset, {name: p.name, date: p.date, tags: p.tags.join("|")});
+        container.appendChild(block);
+    });
+
+    const blocks = Array.from(container.querySelectorAll(".projectblock"));
+    const search = document.getElementById("project-search");
+    const sortButtons = Array.from(document.querySelectorAll("#project-sort .tag"));
+    const filterRow = document.getElementById("project-tag-filters");
+    const empty = document.getElementById("project-empty");
+    const toggle = document.getElementById("project-dropdown-toggle");
+    const linkButtons = Array.from(document.querySelectorAll("#project-link-filters .tag"));
+    const viewButtons = Array.from(document.querySelectorAll("#project-view .tag"));
+    const categoryView = document.querySelector(".categoryview");
+    const selected = new Set();
+    const selectedLinks = new Set();
+    let sortBy = "new";
+    let viewMode = "category";
+
+    const info = new Map(blocks.map(b => {
+        const desc = b.querySelector(":scope > p");
+        const links = Array.from(b.querySelectorAll(".buttonholder a.button"), a => a.textContent.trim());
+        return [b, {
+            text: (b.dataset.name + " " + (desc ? desc.textContent : "")).replace(/\s+/g, " ").toLowerCase(),
+            links: new Set(links),
+        }];
+    }));
+
+    const dropdowns = Array.from(document.querySelectorAll(".projectdropdown"), d => ({
+        toggle: d.querySelector(".projectdropdown-toggle"),
+        menu: d.querySelector(".projectdropdown-menu"),
+    }));
+    function setMenuOpen(dropdown, open) {
+        dropdown.menu.hidden = !open;
+        dropdown.toggle.setAttribute("aria-expanded", open);
+    }
+    dropdowns.forEach(dropdown => dropdown.toggle.addEventListener("click", () => {
+        const open = dropdown.menu.hidden;
+        dropdowns.forEach(d => setMenuOpen(d, false));
+        setMenuOpen(dropdown, open);
+    }));
+    document.addEventListener("click", e => {
+        if (!e.target.closest(".projectdropdown")) dropdowns.forEach(d => setMenuOpen(d, false));
+    });
+    document.addEventListener("keydown", e => {
+        const open = dropdowns.find(d => !d.menu.hidden);
+        if (e.key === "Escape" && open) { setMenuOpen(open, false); open.toggle.focus(); }
+    });
+
+    sortButtons.forEach(btn => btn.addEventListener("click", () => {
+        sortBy = btn.dataset.sort;
+        update();
+    }));
+
+    viewButtons.forEach(btn => btn.addEventListener("click", () => {
+        viewMode = btn.dataset.view;
+        dropdowns.forEach(d => setMenuOpen(d, false));
+        update();
+    }));
+
+    linkButtons.forEach(btn => btn.addEventListener("click", () => {
+        const link = btn.dataset.link;
+        selectedLinks.has(link) ? selectedLinks.delete(link) : selectedLinks.add(link);
+        update();
+    }));
+
+    const allTags = new Set(blocks.flatMap(b => b.dataset.tags.split("|")));
+    const others = [...allTags].filter(t => !CATEGORIES.includes(t))
+        .sort((a, b) => a.localeCompare(b, undefined, {sensitivity: "base"}));
+    const tagButtons = {};
+    [...CATEGORIES.filter(t => allTags.has(t)), ...others].forEach(tag => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "tag" + (CATEGORIES.includes(tag) ? " tag-category" : "");
+        btn.textContent = tag;
+        btn.addEventListener("click", () => toggleTag(tag));
+        filterRow.appendChild(btn);
+        tagButtons[tag] = btn;
+    });
+    function makeClearButton(row, set) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "tag clear-selection";
+        btn.innerHTML = 'clear <span class="clear-x" aria-hidden="true">&times;</span>';
+        btn.hidden = true;
+        btn.addEventListener("click", () => { set.clear(); update(); });
+        row.appendChild(btn);
+        return btn;
+    }
+    const clearTags = makeClearButton(filterRow, selected);
+    const clearLinks = makeClearButton(document.getElementById("project-link-filters"), selectedLinks);
+
+    document.addEventListener("click", e => {
+        const chip = e.target.closest(".tagholder .tag");
+        if (chip) toggleTag(chip.textContent.trim());
+    });
+
+    const MIN_CATEGORY_SIZE = 3;
+    const CATEGORY_TITLES = {
+        "game": "games",
+        "webapp": "webapps",
+        "simulation": "simulations",
+        "data visualization": "data visualizations",
+    };
+    const CATEGORY_PRIORITY = ["game", "data visualization", "simulation", "algorithms", "mobile", "webapp"];
+    function renderCategoryView(sortedBlocks) {
+        const visibleBlocks = sortedBlocks.filter(b => !b.hidden);
+        const tagsOf = b => b.dataset.tags.split("|");
+        const allowed = [...CATEGORY_PRIORITY];
+        const assign = () => new Map(visibleBlocks.map(b =>
+            [b, allowed.find(category => tagsOf(b).includes(category)) || "other"]));
+        let assigned = assign();
+        for (const category of CATEGORY_PRIORITY) {
+            const count = visibleBlocks.filter(b => assigned.get(b) === category).length;
+            if (count >= MIN_CATEGORY_SIZE) continue;
+            allowed.splice(allowed.indexOf(category), 1);
+            assigned = assign();
+        }
+        const rows = [...allowed, "other"]
+            .map(category => ({category, members: visibleBlocks.filter(b => assigned.get(b) === category)}))
+            .sort((a, b) => (a.category === "other") - (b.category === "other") || b.members.length - a.members.length);
+
+        categoryView.replaceChildren();
+        rows.filter(row => row.members.length).forEach(({category, members}) => {
+            const label = el("div", {className: "categorylabel"}, [
+                el("h2", {textContent: CATEGORY_TITLES[category] || category}),
+                el("p", {className: "categorylabel-count",
+                    textContent: `${members.length} project${members.length === 1 ? "" : "s"}`}),
+            ]);
+            const cards = members.map(b => b.cloneNode(true));
+            cards.forEach((card, i) => card.style.zIndex = cards.length - i);
+            const stack = el("div", {className: "cardstack"}, [el("div", {className: "cardstack-track"}, cards)]);
+            const row = el("section", {className: "categoryrow", ariaLabel: category}, [label, stack]);
+            row.dataset.category = category;
+            categoryView.appendChild(row);
+
+            stack.addEventListener("mouseover", e => {
+                const card = e.target.closest(".projectblock");
+                if (card) layoutStack(stack, cards.indexOf(card));
+            });
+            stack.addEventListener("mouseleave", () => layoutStack(stack, -1));
+            stack.addEventListener("focusin", e => layoutStack(stack, cards.indexOf(e.target.closest(".projectblock"))));
+            stack.addEventListener("focusout", e => {
+                if (!stack.contains(e.relatedTarget)) layoutStack(stack, -1);
+            });
+            layoutStack(stack, -1);
+        });
+    }
+
+    const CARD_GAP = 16, MIN_CARD_STEP = 32;
+    function layoutStack(stack, focusIndex) {
+        stack.focusIndex = focusIndex;
+        const track = stack.firstElementChild;
+        const cards = Array.from(track.children);
+        const widths = cards.map(card => card.offsetWidth);
+        const style = getComputedStyle(stack);
+        const width = stack.clientWidth - (parseFloat(style.paddingLeft) || 0) - (parseFloat(style.paddingRight) || 0);
+
+        const fullSteps = widths.slice(0, -1).map(w => w + CARD_GAP);
+        const focused = focusIndex > 0;
+        const flexible = fullSteps.map((_, i) => !(focused && i + 1 === focusIndex));
+        let space = width - widths[widths.length - 1];
+        fullSteps.forEach((full, i) => { if (!flexible[i]) space -= full; });
+        const caps = fullSteps.filter((_, i) => flexible[i]).sort((a, b) => a - b);
+        let level = Infinity, remaining = space, count = caps.length;
+        for (const cap of caps) {
+            if (cap * count <= remaining) { remaining -= cap; count--; }
+            else { level = remaining / count; break; }
+        }
+        const steps = fullSteps.map((full, i) =>
+            flexible[i] ? Math.max(MIN_CARD_STEP, Math.min(full, level)) : full);
+
+        let x = 0;
+        cards.forEach((card, i) => {
+            if (i > 0) x += steps[i - 1];
+            card.style.transform = `translateX(${x}px)`;
+        });
+        track.style.width = `${x + widths[widths.length - 1]}px`;
+        track.style.height = `${Math.max(...cards.map(card => card.offsetHeight))}px`;
+    }
+
+    new ResizeObserver(() => {
+        categoryView.querySelectorAll(".cardstack").forEach(stack => layoutStack(stack, stack.focusIndex));
+    }).observe(categoryView);
+
+    function toggleTag(tag) {
+        selected.has(tag) ? selected.delete(tag) : selected.add(tag);
+        update();
+    }
+
+    const MOVE_DURATION = 400, FADE_DURATION = 300;
+    let renderedViewMode = null;
+
+    function visibleCards() {
+        return viewMode === "category"
+            ? Array.from(categoryView.querySelectorAll(".projectblock"))
+            : blocks.filter(b => !b.hidden);
+    }
+    const cardKey = card => (card.closest(".categoryrow")?.dataset.category || "") + "|" + card.dataset.name;
+
+    function snapshotCards() {
+        return new Map(visibleCards().map(card => [cardKey(card), {card, rect: card.getBoundingClientRect()}]));
+    }
+
+    function animateCards(before) {
+        const shown = new Set();
+        visibleCards().forEach(card => {
+            const key = cardKey(card);
+            shown.add(key);
+            const final = card.style.transform || "translate(0px, 0px)";
+            const old = before.get(key);
+            if (old) {
+                const rect = card.getBoundingClientRect();
+                const dx = old.rect.left - rect.left, dy = old.rect.top - rect.top;
+                if (dx || dy) card.animate(
+                    [{transform: `translate(${dx}px, ${dy}px) ${final}`}, {transform: final}],
+                    {duration: MOVE_DURATION, easing: "ease"});
+            } else {
+                card.animate(
+                    [{opacity: 0, transform: `${final} scale(0.95)`}, {opacity: 1, transform: final}],
+                    {duration: MOVE_DURATION, easing: "ease"});
+            }
+        });
+        before.forEach(({card, rect}, key) => {
+            if (shown.has(key)) return;
+            const ghost = card.cloneNode(true);
+            ghost.hidden = false;
+            Object.assign(ghost.style, {
+                position: "fixed", left: `${rect.left}px`, top: `${rect.top}px`,
+                margin: "0", transform: "none", zIndex: "1", pointerEvents: "none",
+            });
+            document.body.appendChild(ghost);
+            ghost.animate(
+                [{opacity: 1, transform: "scale(1)"}, {opacity: 0, transform: "scale(0.95)"}],
+                {duration: FADE_DURATION, easing: "ease"}
+            ).onfinish = () => ghost.remove();
+        });
+    }
+
+    function update() {
+        const animate = renderedViewMode === viewMode
+            && typeof Element.prototype.animate === "function";
+        const before = animate ? snapshotCards() : null;
+
+        const query = search.value.trim().toLowerCase();
+        let visible = 0;
+        blocks.forEach(b => {
+            const tags = b.dataset.tags.split("|");
+            const {text, links} = info.get(b);
+            const show = text.includes(query)
+                && [...selected].every(t => tags.includes(t))
+                && [...selectedLinks].every(l => links.has(l));
+            b.hidden = !show;
+            if (show) visible++;
+        });
+        Object.entries(tagButtons).forEach(([tag, btn]) =>
+            btn.classList.toggle("tag-selected", selected.has(tag)));
+        container.querySelectorAll(".tagholder .tag").forEach(chip =>
+            chip.classList.toggle("tag-selected", selected.has(chip.textContent.trim())));
+        sortButtons.forEach(btn =>
+            btn.classList.toggle("tag-selected", btn.dataset.sort === sortBy));
+        linkButtons.forEach(btn =>
+            btn.classList.toggle("tag-selected", selectedLinks.has(btn.dataset.link)));
+        viewButtons.forEach(btn =>
+            btn.classList.toggle("tag-selected", btn.dataset.view === viewMode));
+        const filterCount = selected.size + selectedLinks.size;
+        clearTags.hidden = selected.size === 0;
+        clearLinks.hidden = selectedLinks.size === 0;
+        empty.hidden = visible > 0;
+        toggle.innerHTML = "Sort/Filter" + (filterCount ? ` (${filterCount})` : "") + ' <i class="bi bi-filter"></i>';
+
+        const byName = (a, b) => a.dataset.name.localeCompare(b.dataset.name, undefined, {sensitivity: "base"});
+        const byDate = (a, b) => a.dataset.date.localeCompare(b.dataset.date);
+        const sorters = {
+            new: (a, b) => byDate(b, a) || byName(a, b),
+            old: (a, b) => byDate(a, b) || byName(a, b),
+            az: byName,
+            za: (a, b) => byName(b, a),
+        };
+        const sorted = blocks.slice().sort(sorters[sortBy]);
+        sorted.forEach(b => container.appendChild(b));
+
+        const byCategory = viewMode === "category";
+        container.hidden = byCategory;
+        categoryView.hidden = !byCategory;
+        if (byCategory) renderCategoryView(sorted);
+        else categoryView.replaceChildren();
+
+        if (before) animateCards(before);
+        renderedViewMode = viewMode;
+    }
+
+    search.addEventListener("input", update);
+    update();
+})();
+</script>
+{% endblock %}
