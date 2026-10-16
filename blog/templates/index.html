@@ -7,34 +7,231 @@
 {% endblock %}
 
 {% block content %}
+{{ posts|json_script:"posts-data" }}
+{% include "projects_data.html" %}
 <div class="centerbox">
     <div class="postsbox">
-        {% if searchquery %}
-        <h1 style="margin-bottom: 5px;">Search Results</h1>
-        <p style="font-style: italic; margin-top:0">Query: "{{searchquery}}"</p>
-        {% endif %}
-        {% for post in posts %}
-        <div onclick="location.href = '{% url 'blog:post' post.id %}'" class="post">
-            <h1>{{post.title}}</h1>
-            <i>{{post.created}}</i>
-            {% autoescape off %}
-            ​{{post.content.html|truncatewords_html:75}}
-            {% endautoescape %}
-            <form action="{% url 'blog:index' %}" method="POST" style="display: flex; flex-direction: row; align-items: center;">
-                {% csrf_token %}
-                {% for tag in post.tags.all %}
-                <input type="submit" name="filter-submit-{{tag.id}}" class="tag" style="margin-right: 10px" value="{{tag.name}}"></input>
-                {% endfor %}
-            </form>
+        <div id="search-header" hidden>
+            <h1 style="margin-bottom: 5px;">Search Results</h1>
+            <p id="search-query" style="font-style: italic; margin-top:0"></p>
         </div>
-        <br>
-        {% endfor %}
-        {% if previous != 0 %}
-        <div style="margin: 1rem 0 0 2rem;">
-            <a class="button" href="{% url 'blog:index' previous %}">« Previous</a>
-        </div>
-        {% endif %}
+        <div id="post-list"></div>
+        <p id="post-empty" hidden>No posts match these filters.</p>
+        <nav id="pagination" class="pagination" aria-label="Blog pages"></nav>
     </div>
     {% include "sidebar.html" %}
 </div>
+<script>
+(function () {
+    const PER_PAGE = 7;
+    const PROJECTS_TAG = "Projects";
+    const POSTS_TAG = "Blog Posts";
+    const PROJECTS_URL = "{% url 'projects' %}";
+    const el = (tag, props = {}, children = []) => {
+        const node = Object.assign(document.createElement(tag), props);
+        node.append(...children);
+        return node;
+    };
+    const textOf = html => el("div", {innerHTML: html}).textContent;
+
+    // Project uploads are shown as entries alongside the database posts.
+    const posts = JSON.parse(document.getElementById("posts-data").textContent);
+    const projects = JSON.parse(document.getElementById("projects-data").textContent).map(p => ({
+        project: p,
+        title: p.name,
+        date: p.date,
+        url: PROJECTS_URL + "?q=" + encodeURIComponent(p.name),
+        text: textOf(p.description),
+        tags: [PROJECTS_TAG],
+    }));
+    const sortKey = date => date.length === 7 ? date + "-01" : date;
+    // "Blog Posts" only matters to the filter, so it isn't shown on each post's own tag list.
+    // Every tag an entry can be filtered by, including "Blog Posts" and its year, is also shown on its card.
+    posts.forEach(post => post.filterTags = [...post.tags, POSTS_TAG, post.date.slice(0, 4)]);
+    projects.forEach(project => project.filterTags = [...project.tags, project.date.slice(0, 4)]);
+    const entries = [...posts, ...projects]
+        .sort((a, b) => sortKey(b.date).localeCompare(sortKey(a.date)));
+    entries.forEach(e => e.search = (e.title + " " + e.text).replace(/\s+/g, " ").toLowerCase());
+
+    function formatDate(date) {
+        const [year, month, day] = date.split("-").map(Number);
+        return day
+            ? new Date(year, month - 1, day).toLocaleDateString("en-US", {month: "short", day: "numeric", year: "numeric"})
+            : new Date(year, month - 1).toLocaleDateString("en-US", {month: "long", year: "numeric"});
+    }
+
+    const list = document.getElementById("post-list");
+    const empty = document.getElementById("post-empty");
+    const pagination = document.getElementById("pagination");
+    const searchHeader = document.getElementById("search-header");
+    const searchQuery = document.getElementById("search-query");
+    const searchbar = document.getElementById("searchbar");
+    const clearSelection = document.getElementById("blog-clear-selection");
+    const tagLinks = Array.from(document.querySelectorAll("#blog-tag-filters [data-tag]"));
+
+    const params = new URLSearchParams(location.search);
+    const state = {
+        query: params.get("q") || "",
+        tag: params.get("tag") || null,
+        // Page 1 holds the oldest entries; null means the last (newest) page, which is the default.
+        page: parseInt(params.get("page"), 10) || null,
+    };
+    searchbar.value = state.query;
+
+    const tagButton = name => el("a", {
+        className: "tag" + (state.tag === name ? " tag-selected" : ""),
+        href: "?tag=" + encodeURIComponent(name),
+        textContent: name,
+        style: "margin-right: 10px",
+    });
+
+    function renderEntry(entry) {
+        const p = entry.project;
+        const heading = [
+            el("h1", {textContent: entry.title}),
+            el("i", {textContent: formatDate(entry.date)}),
+        ];
+        const card = p
+            ? el("div", {className: "post post-project"}, [
+                el("div", {className: "post-project-header"}, [
+                    el("div", {}, [
+                        ...heading,
+                        el("p", {className: "post-project-description", innerHTML: p.description}),
+                        el("div", {className: "post-tags"}, entry.filterTags.map(tagButton)),
+                    ]),
+                    el("div", {className: "post-project-thumb"}, [el("img", {src: p.image, alt: ""})]),
+                ]),
+            ])
+            : el("div", {className: "post"}, [
+                ...heading,
+                el("div", {innerHTML: entry.preview}),
+                el("div", {className: "post-tags"}, entry.filterTags.map(tagButton)),
+            ]);
+        card.addEventListener("click", e => {
+            if (!e.target.closest("a")) location.href = entry.url;
+        });
+        return card;
+    }
+
+    // 1 … 4 5 6 … 10: always show the ends and the neighbours of the current page.
+    function pageItems(current, total) {
+        const pages = [...new Set([1, current - 1, current, current + 1, total])]
+            .filter(n => n >= 1 && n <= total).sort((a, b) => a - b);
+        const items = [];
+        pages.forEach((n, i) => {
+            const gap = n - (pages[i - 1] || 0);
+            if (gap === 2) items.push(n - 1);
+            else if (gap > 2) items.push(null);
+            items.push(n);
+        });
+        return items;
+    }
+
+    function renderPagination(total) {
+        pagination.replaceChildren();
+        if (total <= 1) return;
+        const button = (label, page, {current = false, ariaLabel} = {}) => {
+            const disabled = page < 1 || page > total || current;
+            const btn = el("button", {
+                type: "button",
+                className: "pagination-item" + (current ? " pagination-current" : ""),
+                innerHTML: label,
+                disabled,
+            });
+            if (ariaLabel) btn.setAttribute("aria-label", ariaLabel);
+            if (current) btn.setAttribute("aria-current", "page");
+            btn.addEventListener("click", () => goToPage(page));
+            return btn;
+        };
+        pagination.append(
+            button("&laquo;", 1, {ariaLabel: "First page"}),
+            button("&lsaquo;", state.page - 1, {ariaLabel: "Previous page"}),
+            ...pageItems(state.page, total).map(n => n === null
+                ? el("span", {className: "pagination-ellipsis", textContent: "…"})
+                : button(String(n), n, {current: n === state.page})),
+            button("&rsaquo;", state.page + 1, {ariaLabel: "Next page"}),
+            button("&raquo;", total, {ariaLabel: "Last page"}),
+        );
+    }
+
+    function syncUrl(total) {
+        const next = new URLSearchParams();
+        if (state.query) next.set("q", state.query);
+        if (state.tag) next.set("tag", state.tag);
+        if (state.page < total) next.set("page", state.page);
+        const qs = next.toString();
+        history.replaceState(null, "", location.pathname + (qs ? "?" + qs : ""));
+    }
+
+    function render() {
+        const query = state.query.trim().toLowerCase();
+        const matches = entries.filter(e =>
+            (!query || e.search.includes(query)) && (!state.tag || e.filterTags.includes(state.tag)));
+        const total = Math.max(1, Math.ceil(matches.length / PER_PAGE));
+        state.page = state.page === null ? total : Math.min(Math.max(state.page, 1), total);
+        // Chunk from the newest end so the last page is always full; the remainder lands on page 1.
+        const fromNewest = (total - state.page) * PER_PAGE;
+        const pageEntries = matches.slice(fromNewest, fromNewest + PER_PAGE);
+
+        list.replaceChildren(...pageEntries.flatMap(e => [renderEntry(e), el("br")]));
+        if (pageEntries.length) list.append(newerNav, olderNav);
+        newerNav.hidden = state.page >= total;
+        olderNav.hidden = state.page <= 1;
+        // The timeline fades out towards newer (top) or older (bottom) pages that exist.
+        list.classList.toggle("timeline-fade-top", state.page < total);
+        list.classList.toggle("timeline-fade-bottom", state.page > 1);
+        empty.hidden = matches.length > 0;
+        searchHeader.hidden = !state.query.trim();
+        searchQuery.textContent = `Query: "${state.query.trim()}"`;
+        clearSelection.hidden = !state.tag && !state.query.trim();
+        tagLinks.forEach(link => link.classList.toggle("tag-selected", link.dataset.tag === state.tag));
+        renderPagination(total);
+        syncUrl(total);
+    }
+
+    const timelineNav = (className, label, offset) => {
+        const btn = el("button", {type: "button", className: "tag", innerHTML: label});
+        btn.addEventListener("click", () => goToPage(state.page + offset));
+        return el("div", {className: "timeline-nav " + className}, [btn]);
+    };
+    const newerNav = timelineNav("timeline-nav-newer", "&#9650; Newer posts", 1);
+    const olderNav = timelineNav("timeline-nav-older", "&#9660; Older posts", -1);
+
+    function goToPage(page) {
+        state.page = page;
+        render();
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
+    document.getElementById("blog-search-form").addEventListener("submit", e => {
+        e.preventDefault();
+        state.query = searchbar.value;
+        state.page = null;
+        render();
+    });
+    searchbar.addEventListener("input", () => {
+        state.query = searchbar.value;
+        state.page = null;
+        render();
+    });
+    clearSelection.addEventListener("click", e => {
+        e.preventDefault();
+        Object.assign(state, {query: "", tag: null, page: null});
+        searchbar.value = "";
+        render();
+    });
+    document.addEventListener("click", e => {
+        const link = e.target.closest("#blog-tag-filters [data-tag], .post-tags .tag");
+        if (!link) return;
+        e.preventDefault();
+        const tag = link.dataset.tag || link.textContent.trim();
+        state.tag = state.tag === tag ? null : tag;
+        state.page = null;
+        render();
+    });
+
+    render();
+})();
+</script>
 {% endblock %}

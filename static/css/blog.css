@@ -40,7 +40,79 @@
     width: 100%;
 }
 
+/* Timeline through the horizontal centre of the post column (.post's 90% + 67px of padding/border). */
+#post-list {
+    position: relative;
+    /* Mirrors the <br> after the last post, so the newer/older buttons sit equally far from their posts. */
+    padding-top: 1.25rem;
+    --timeline-x: calc(45% + 33.5px);
+    --timeline-width: 5px;
+    --timeline-fade: 2.5rem;
+}
+#post-list::before {
+    content: "";
+    position: absolute;
+    left: calc(var(--timeline-x) - var(--timeline-width) / 2);
+    width: var(--timeline-width);
+    top: 3rem;
+    bottom: 3rem;
+    background-color: var(--sandstone-color);
+    opacity: 0.6;
+}
+#post-list.timeline-fade-top::before {
+    top: calc(-1 * var(--timeline-fade));
+}
+#post-list.timeline-fade-bottom::before {
+    bottom: -2rem;
+}
+#post-list.timeline-fade-top::before, #post-list.timeline-fade-bottom::before {
+    -webkit-mask-image: var(--timeline-mask);
+    mask-image: var(--timeline-mask);
+}
+#post-list.timeline-fade-top { --timeline-mask: linear-gradient(to bottom, transparent, black var(--timeline-fade)); }
+#post-list.timeline-fade-bottom { --timeline-mask: linear-gradient(to top, transparent, black var(--timeline-fade)); }
+#post-list.timeline-fade-top.timeline-fade-bottom {
+    --timeline-mask: linear-gradient(to bottom, transparent, black var(--timeline-fade),
+        black calc(100% - var(--timeline-fade)), transparent);
+}
+#post-list:empty::before {
+    display: none;
+}
+
+/* Hovering a faded end of the timeline reveals a button to the adjacent page. */
+.timeline-nav {
+    position: absolute;
+    left: calc(var(--timeline-x) - 7rem);
+    width: 14rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.timeline-nav-newer {
+    top: calc(-1 * var(--timeline-fade));
+}
+.timeline-nav-older {
+    bottom: -2rem;
+}
+.timeline-nav[hidden] {
+    display: none;
+}
+.timeline-nav .tag {
+    background-color: var(--background-color);
+    opacity: 0;
+    transition: opacity 0.2s, background-color 0.2s, color 0.2s;
+}
+.timeline-nav:hover .tag, .timeline-nav .tag:focus-visible {
+    opacity: 1;
+}
+.timeline-nav .tag:hover {
+    background-color: var(--ocean-color);
+}
+
 .post {
+    position: relative;
+    background-color: var(--background-color);
     width: 90%;
     border-left: 7px solid var(--sandstone-color);
     padding: 20px 30px;
@@ -56,6 +128,15 @@
 @media (max-width: 1300px) {
     .post {
         width: 100%;
+    }
+    .post.post-project {
+        width: 94%;
+    }
+    .pagination {
+        width: calc(100% + 67px);
+    }
+    #post-list {
+        --timeline-x: calc(50% + 33.5px);
     }
     .sidebar {
         opacity: 0;
@@ -77,15 +158,164 @@
 }
 .tag-selected, .tag:hover {
     background-color: var(--ocean-color);
-    color: var(--background-color);
+    color: white;
+}
+/* Beat main.css's a:not(.button) colour/opacity rules for link tags. */
+a.tag.tag {
+    color: var(--ocean-color);
+    opacity: 1;
+}
+a.tag.tag-selected, a.tag.tag:hover {
+    color: white;
+}
+
+.tag-filter-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 8px;
+    padding: 0 5px;
 }
 
 .clear-selection {
-    margin: 5px;
+    display: inline-block;
     color: gray;
     border-color: gray;
+}
+.clear-selection[hidden] {
+    display: none;
 }
 .clear-selection:hover {
     background-color: gray;
     color: var(--background-color);
+}
+#blog-search-form {
+    display: flex;
+    align-items: stretch;
+    margin: 1rem 0;
+}
+#searchbar {
+    flex: 1;
+    min-width: 0;
+    box-sizing: border-box;
+    border-radius: 8px 0 0 8px;
+}
+#searchbar:focus {
+    outline: 2px solid var(--ocean-color);
+    outline-offset: -2px;
+}
+.search-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.9rem;
+    border: none;
+    border-radius: 0 8px 8px 0;
+    background-color: var(--ocean-color);
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.search-submit:hover {
+    filter: brightness(0.9);
+}
+
+.post-tags {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+/* Project entries: tinted, rounded and inset so they read differently from real posts.
+   Centred within the post column (.post's width + 67px of padding/border). */
+.post.post-project {
+    width: 84%;
+    margin-left: calc(3% + 3.5px);
+    padding: 14px 30px;
+    border-left: none;
+    border-radius: 10px;
+    /* Tint layered over an opaque base so the timeline doesn't show through. */
+    background: linear-gradient(rgba(98, 168, 224, 0.1), rgba(98, 168, 224, 0.1)), var(--background-color);
+    box-shadow: 3px 3px 16px var(--shadow-black);
+}
+.post.post-project:hover {
+    background: linear-gradient(rgba(98, 168, 224, 0.18), rgba(98, 168, 224, 0.18)), var(--background-color);
+}
+.post-project h1 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.4rem;
+}
+.post-project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 1rem;
+}
+/* Stretches to the height of the title + date + description column beside it. */
+.post-project-thumb {
+    position: relative;
+    width: 11rem;
+    flex-shrink: 0;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.18);
+}
+.post-project-thumb img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.post-project-description {
+    margin: 0.6rem 0 0 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.post-project .post-tags {
+    margin: 0.6rem 0 0 0;
+}
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: calc(90% + 67px); /* match .post: 90% + 60px padding + 7px border */
+    gap: 0.4rem;
+    margin: 3.5rem 0 2rem 0;
+}
+.pagination:empty {
+    display: none;
+}
+.pagination-item {
+    min-width: 2.4rem;
+    height: 2.4rem;
+    padding: 0 0.6rem;
+    border-radius: 1.2rem;
+    border: var(--ocean-color) 2px solid;
+    color: var(--ocean-color);
+    background-color: rgba(0,0,0,0);
+    font: var(--main-font);
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.pagination-item:hover:not(:disabled), .pagination-current {
+    background-color: var(--ocean-color);
+    color: white;
+}
+.pagination-item:disabled:not(.pagination-current) {
+    border-color: gray;
+    color: gray;
+    opacity: 0.5;
+    cursor: default;
+}
+.pagination-current {
+    cursor: default;
+}
+.pagination-ellipsis {
+    padding: 0 0.3rem;
+    color: gray;
 }

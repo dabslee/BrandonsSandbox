@@ -4,19 +4,27 @@
     <div class="sidebar-moving">
         <img src="{% static 'img/beach.png' %}" style="width:80%;">
         <h2>Brandon's Blog</h2>
-        <p>A place for me to blog my essays, random thoughts, and about the books I read.</p>
-        <form action="{% url 'blog:index' %}" method="POST">
-            {% csrf_token %}
-            <input id="searchbar" type="text" placeholder="Search by keyword" name="searchbar">
-            <input name="keyword-submit" class="button" type="submit" style="margin:10px;padding:0px 10px" value="&#187;">
-            <div>
-                <p><b>Search by tag:</b></p>
-                {% for tag in tags %}
-                <input type="submit" name="filter-submit-{{tag.id}}" class="tag {% if selected_tag_id == tag.id %}tag-selected{% endif %}" style="margin: 5px" value="{{tag.name}}"></input>
-                {% endfor %}
-                <div onclick="window.location.href='{% url 'blog:index' %}'" class="tag clear-selection">&#x2715; Clear selection</div>
-            </div>
+        <p>A place for me to blog about my essays, projects, random thoughts, and the books I read.</p>
+        <form id="blog-search-form" action="{% url 'blog:index' %}" method="GET">
+            <input id="searchbar" type="text" placeholder="Search" name="q" aria-label="Search posts by keyword">
+            <button class="search-submit" type="submit" aria-label="Search">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
+            </button>
         </form>
+        <div id="blog-tag-filters">
+            <p><b>Filter by tag:</b></p>
+            <div class="tag-filter-list">
+                {% for tag in tags %}
+                <a href="{% url 'blog:index' %}?tag={{tag.name|urlencode}}" data-tag="{{tag.name}}" class="tag">{{tag.name}}</a>
+                {% endfor %}
+                <a href="{% url 'blog:index' %}?tag=Blog%20Posts" data-tag="Blog Posts" class="tag">Blog Posts</a>
+                <a href="{% url 'blog:index' %}?tag=Projects" data-tag="Projects" class="tag">Projects</a>
+                {% for year in years %}
+                <a href="{% url 'blog:index' %}?tag={{year}}" data-tag="{{year}}" class="tag">{{year}}</a>
+                {% endfor %}
+                <a href="{% url 'blog:index' %}" id="blog-clear-selection" class="tag clear-selection" hidden>&#x2715; Clear selection</a>
+            </div>
+        </div>
         <div class="sidebar-bottom">
             <div class="back-to-top" onclick="document.body.scrollTop = 0;"><img src="{% static 'img/backtotop.png' %}" style="width:25%"></div>
         </div>

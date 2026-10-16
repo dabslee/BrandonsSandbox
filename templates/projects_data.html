@@ -1,0 +1,168 @@
+{% load static %}
+<script id="projects-data" type="application/json">
+[
+    {
+        "name": "Cyberpunk Ninja",
+        "date": "2026-10-15",
+        "image": "{% static 'img/cyberpunkninja.png' %}",
+        "code": "https://github.com/dabslee/scratch-games",
+        "demo": "https://scratch.mit.edu/projects/1392126418/",
+        "description": "A ninja action platformer set in a futuristic sci-fi city, drawing inspiration from <a href='https://www.celestegame.com/' target='_blank'>Celeste</a> for the platforming and <a href='https://www.sekirothegame.com/' target='_blank'>Sekiro</a> for the combat. Play as Hotaru, who wakes in the slums with no memories and a ghost in her head, and fight your way up to the Kanshi Spire. Built for <a href='https://scratch.mit.edu/' target='_blank'>Scratch</a> via a Python compiler.",
+        "tags": ["game", "Scratch", "Python"]
+    },
+    {
+        "name": "The Death of Gavilar",
+        "date": "2026-10-04",
+        "image": "{% static 'img/deathofgavilar.png' %}",
+        "code": "https://github.com/dabslee/scratch-games",
+        "demo": "https://scratch.mit.edu/projects/1387892299/",
+        "description": "A Stormlight Archive fan game based on the prologue of <a href='https://www.brandonsanderson.com/pages/the-stormlight-archive-series' target='_blank'>Brandon Sanderson's <i>The Way of Kings</i></a>. Play as Szeth, the Truthless of Shinovar, and use Shardblade strikes and Stormlight Lashings to fight through the palace and reach the king before the timer runs out. Built in <a href='https://scratch.mit.edu/' target='_blank'>Scratch</a>.",
+        "tags": ["game", "Scratch"]
+    },
+    {
+        "name": "Battle School",
+        "date": "2026-10-03",
+        "image": "{% static 'img/battleschool.png' %}",
+        "code": "https://github.com/dabslee/scratch-games",
+        "demo": "https://scratch.mit.edu/projects/1387778117/",
+        "description": "A real-time strategy fan game set in the Battle School simulator from <a href='http://www.hatrack.com/osc/books/endersgame/' target='_blank'>Orson Scott Card's <i>Ender's Game</i></a>. Command fighters, cruisers, and dreadnoughts against the Formics, using asteroids as cover, across 6 adventure missions or endless randomly generated freeplay scenarios. Built in <a href='https://scratch.mit.edu/' target='_blank'>Scratch</a>.",
+        "tags": ["game", "Scratch"]
+    },
+    {
+        "name": "Gomoku",
+        "date": "2026-02",
+        "image": "https://github.com/dabslee/Board-Games/blob/master/Screenshots/desktop_home.png?raw=true",
+        "code": "https://github.com/dabslee/Board-Games",
+        "demo": "https://games.brandonssandbox.com/Gomoku",
+        "install": "https://github.com/dabslee/Board-Games/raw/refs/heads/master/GomokuApp/releases/GomokuApp.apk",
+        "description": "A simple Gomoku (Five in a Row) game built with React Native and Expo. Supports offline play against computers (with MiniMax AI) or players on the same device, as well as online multiplayer via a lightweight Flask backend.",
+        "tags": ["game", "webapp", "mobile", "React Native", "Python", "Flask"]
+    },
+    {
+        "name": "ListenerLibrary",
+        "date": "2025-10",
+        "image": "https://raw.githubusercontent.com/dabslee/ListenerLibrary/refs/heads/master/screenshots/focused.png",
+        "code": "https://github.com/dabslee/ListenerLibrary",
+        "demo": "https://listen.brandonssandbox.com/",
+        "description": "A mobile-friendly, web-based music player application that allows users to upload, listen to, and keep track of listening progress on their files. Provides core music player functionalities like playback control, track seeking, playlist management, and sleep timers.",
+        "tags": ["webapp", "Django", "Python", "JavaScript", "HTML/CSS"]
+    },
+    {
+        "name": "Karaoke Unlimited",
+        "date": "2025-06",
+        "image": "https://raw.githubusercontent.com/dabslee/Karaoke/refs/heads/master/assets/img/homescreen.png",
+        "code": "https://github.com/dabslee/Karaoke",
+        "demo": "https://github.com/dabslee/Karaoke/raw/refs/heads/master/assets/demo.mp4",
+        "description": "A free webapp for conducting home Karaoke sessions: Rather than relying on a preset bank of songs to choose from, KU allows you to choose songs from videos on YouTube. After singing along, KU uses the YIN scoring algorithm to rate your performance.",
+        "tags": ["webapp", "React", "Python", "Flask", "CSS"]
+    },
+    {
+        "name": "leatherbound",
+        "date": "2021-07",
+        "image": "{% static 'img/leatherbound.png' %}",
+        "code": "https://github.com/dabslee/leatherbound",
+        "demo": "https://leatherbound.brandonssandbox.com",
+        "description": "A custom new tab page for Google Chrome built on <a href='https://react.dev/' target='_blank'>React</a> based on the bullet journal asthetic. Uses cookies to store notes and displays weather based on Chicago, IL.",
+        "tags": ["webapp", "React", "JavaScript", "HTML/CSS"]
+    },
+    {
+        "name": "aristotle°",
+        "date": "2021-03",
+        "image": "{% static 'img/aristotle.png' %}",
+        "code": "https://github.com/dabslee/aristotle/",
+        "description": "A free, open-source learning management system (LMS) built on <a href='https://www.djangoproject.com/' target='_blank'>Django</a> and deployed on <a href='https://dashboard.heroku.com/' target='_blank'>Heroku</a>.",
+        "tags": ["webapp", "Django", "Python", "JavaScript", "HTML/CSS"]
+    },
+    {
+        "name": "Brandon's Sandbox",
+        "date": "2021-03",
+        "image": "{% static 'img/website.PNG' %}",
+        "code": "https://github.com/dabslee/BrandonsSandbox",
+        "demo": "{% url 'home' %}",
+        "description": "This website! A personal website for hosting my thoughts and projects. Made with Python <a href='https://www.djangoproject.com/' target='_blank'>Django</a> and deployed with <a href='https://dashboard.heroku.com/' target='_blank'>Heroku</a>.",
+        "tags": ["webapp", "Django", "Python", "JavaScript", "HTML/CSS"]
+    },
+    {
+        "name": "OpenDiscussion",
+        "date": "2021-02",
+        "image": "{% static 'img/opendiscussion.PNG' %}",
+        "code": "https://github.com/dabslee/OpenDiscussion",
+        "description": "A <a href='https://reddit.com' target='_blank'>Reddit</a>-like forum site arranged around essay posts, which can be original essays or responses to other essays. Readers can vote on whether they agree with the post and whether they think the post makes a strong argument. Made with <a href='https://www.djangoproject.com/' target='_blank'>Django</a>.",
+        "tags": ["webapp", "Django", "Python", "JavaScript", "HTML/CSS"]
+    },
+    {
+        "name": "BowlingSim",
+        "date": "2021-02",
+        "image": "{% static 'img/bowlingsim.png' %}",
+        "code": "https://github.com/dabslee/BowlingSim",
+        "demo": "https://github.com/dabslee/BowlingSim/blob/master/analysis.ipynb",
+        "description": "Simulates a bowling game based on a simple model where pins fall more easily if the pins around them have fallen. Presents an analysis of the model's results in a <a href='https://jupyter.org/' target='_blank'>Juypter</a> notebook.",
+        "tags": ["simulation", "data visualization", "Python", "Jupyter"]
+    },
+    {
+        "name": "Chessling",
+        "date": "2020-01",
+        "image": "{% static 'img/chess.PNG' %}",
+        "code": "https://github.com/dabslee/Chessling",
+        "description": "Chess, created on a challenge with friends on coding chess as fast as we possibly could. Made in 7 hours. GUI uses Python <a href='https://www.pygame.org/' target='_blank'>pygame</a> library.",
+        "tags": ["game", "Python", "pygame"]
+    },
+    {
+        "name": "FRED Relation Analyzer",
+        "date": "2020-01",
+        "image": "{% static 'img/relationship.PNG' %}",
+        "code": "https://github.com/dabslee/Economics-Sandbox/tree/master/relationanalyzer",
+        "description": "Takes <a href='https://fred.stlouisfed.org/' target='_blank'>FRED</a> time series and returns linear fits. Can compare two time series or several time series against each other, returning the slopes and R^2 values of the fits.",
+        "tags": ["data visualization", "MATLAB"]
+    },
+    {
+        "name": "Yield Curve Web Scraper",
+        "date": "2019-11",
+        "image": "{% static 'img/yield.PNG' %}",
+        "code": "https://github.com/dabslee/Economics-Sandbox/tree/master/yieldcurve",
+        "description": "Uses Java to download and parse all the <a href='https://www.treasury.gov/resource-center/data-chart-center/interest-rates/pages/textview.aspx?data=yield' target='_blank'>yield curve data from the U.S. treasury website,</a> putting the results in a csv file. Includes a MATLAB application which renders an animation of the yield curve over time.",
+        "tags": ["data visualization", "Java", "MATLAB"]
+    },
+    {
+        "name": "Brownian Motion Sim",
+        "date": "2020-01",
+        "image": "{% static 'img/brown.PNG' %}",
+        "code": "https://github.com/dabslee/Science-Simulations/tree/master/Brownian%20Motion",
+        "description": "Offers a particle based simulation of 1D <a href='https://en.wikipedia.org/wiki/Brownian_motion' target='_blank'>Brownian motion</a> and shows that it is analogous to a 1D random walk. Also simulates and animates n-dimensional random walks.",
+        "tags": ["simulation", "data visualization", "MATLAB"]
+    },
+    {
+        "name": "Luria-Delbruck Simulator",
+        "date": "2019-11",
+        "image": "{% static 'img/luria.PNG' %}",
+        "code": "https://github.com/dabslee/Science-Simulations/blob/master/Luria-Delbruck",
+        "description": "A simulation of the <a href='https://en.wikipedia.org/wiki/Luria%E2%80%93Delbr%C3%BCck_experiment' target='_blank'>Luria-Delbrück Fluctuation Test</a>, which showed the correctness of the \"mutation hypothesis\" over the \"acquired immunity hypothesis.\" Uses <a href='https://www.pygame.org/' target='_blank'>pygame</a> to render results.",
+        "tags": ["simulation", "data visualization", "Python", "pygame"]
+    },
+    {
+        "name": "SuperTyper",
+        "date": "2019-10",
+        "image": "{% static 'img/racing.png' %}",
+        "code": "https://github.com/dabslee/SuperTyper",
+        "demo": "https://thebslee.itch.io/supertyper",
+        "description": "A fun little game with lots of interesting passages to practice your typing! Simulates a racing game, where the faster you type, the faster your car goes--try to beat the other cars to the finish line! Written with Python's <a href='https://www.pygame.org/' target='_blank'>pygame</a> library.",
+        "tags": ["game", "Python", "pygame"]
+    },
+    {
+        "name": "Rina the Assistant",
+        "date": "2019-10",
+        "image": "{% static 'img/rina.png' %}",
+        "code": "https://github.com/dabslee/Assistant",
+        "description": "A digital assistant to help you live a more productive life. Written with Python's <a href='https://www.pygame.org/' target='_blank'>pygame</a> library.",
+        "tags": ["Python", "pygame"]
+    },
+    {
+        "name": "Project Euler Solutions",
+        "date": "2019-09",
+        "image": "{% static 'img/euler.jpg' %}",
+        "code": "https://github.com/dabslee/Project-Euler",
+        "description": "My solutions to a few of the Project Euler problems written in C++, Java, Python, and VBA.",
+        "tags": ["algorithms", "C++", "Java", "Python", "VBA"]
+    }
+]
+</script>
