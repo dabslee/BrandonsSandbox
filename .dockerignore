@@ -9,3 +9,4 @@ nohup.out
 db.sqlite3
 .git/
 PersonalSite/secret_key.py
+deploy_creds.txt

@@ -1,3 +1,4 @@
+deploy_creds.txt
 PersonalSite/secret_key.py
 **/__pycache__/
 # runtime artifacts - never commit
